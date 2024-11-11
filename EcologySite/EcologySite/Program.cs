@@ -9,12 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
-
 builder.Services.AddDbContext<WebDbContext>(options => options.UseNpgsql(WebDbContext.CONNECTION_STRING));
 
 // Register in DI container our services/repository
 builder.Services.AddScoped<IEcologyRepositoryReal, EcologyRepository>();
+
+
+var app = builder.Build();
+
 
 
 // Configure the HTTP request pipeline.
