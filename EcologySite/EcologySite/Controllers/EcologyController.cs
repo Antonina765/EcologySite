@@ -15,12 +15,10 @@ public class EcologyController : Controller
 { 
     private IEcologyRepositoryReal _ecologyRepository;
     private WebDbContext _webDbContext;
-    private ICommentRepositoryReal _commentRepositoryReal;
 
-    public EcologyController(IEcologyRepositoryReal ecologyRepository, ICommentRepositoryReal commentRepositoryReal, WebDbContext webDbContext)
+    public EcologyController(IEcologyRepositoryReal ecologyRepository, WebDbContext webDbContext)
     {
         _ecologyRepository = ecologyRepository;
-        _commentRepositoryReal = commentRepositoryReal;
         _webDbContext = webDbContext;
     }
 
@@ -39,7 +37,7 @@ public class EcologyController : Controller
             .Select(dbEcology =>
                 new EcologyViewModel
                 {
-                    PostId = dbEcology.Id,
+                    Id = dbEcology.Id,
                     ImageSrc = dbEcology.ImageSrc,
                     Texts = dbEcology.Text
                 }
@@ -74,57 +72,4 @@ public class EcologyController : Controller
         _ecologyRepository.Delete(id);
         return RedirectToAction("EcologyChat");
     }
-    
-    /*[HttpPost]
-    public IActionResult AddComment(int postId, string commentTect)
-    {
-       //var userId
-        if (ModelState.IsValid && userId != null)
-        {
-            var comment = new CommentViewModel()
-            {
-                PostId = postId,
-                CommentText = commentText,
-                UserId = userId.Value
-            };
-            _commentRepositoryReal.Add(comment);
-            return RedirectToAction("EcologyChat");
-        }
-        return BadRequest("Invalid comment data.");
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> CommentsForPost(int postId)
-    {
-        var comments = await _commentRepositoryReal.Comments
-            .Where(c => c.PostId == postId)
-            .Include(c => c.User)
-            .ToListAsync();
-        return View(comments);
-    }*/
-
-    [HttpPost]
-    public IActionResult AddComment(int postId, string commentText)
-    {
-        if (ModelState.IsValid)
-        {
-            var comment = new CommentViewModel()
-            {
-                PostId = postId, 
-                CommentText = commentText
-            }; 
-            _commentRepositoryReal.Add(comment); return RedirectToAction("EcologyChat");
-        } 
-        return BadRequest("Invalid comment data.");
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> CommentsForPost(int postId)
-    {
-        var comments = await _commentRepositoryReal.Comments 
-            .Where(c => c.PostId == postId) 
-            .ToListAsync(); 
-        return View((object?)comments);
-    }
 }
-

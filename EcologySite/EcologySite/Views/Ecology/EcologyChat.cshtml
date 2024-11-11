@@ -30,8 +30,8 @@
                 <div class="post-actions">
                     <span class="dots">•••</span>
                     <div class="actions-menu">
-                        <a href="#" onclick="showEditForm('@item.PostId', '@item.ImageSrc', '@item.Texts.FirstOrDefault()')">Edit</a>
-                        <a asp-action="Remove" asp-route-id="@item.PostId" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+                        <a href="#" onclick="showEditForm('@item.Id', '@item.ImageSrc', '@item.Texts.FirstOrDefault()')">Edit</a>
+                        <a asp-action="Remove" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
                     </div>
                 </div>
             </li>
