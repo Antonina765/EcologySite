@@ -12,6 +12,8 @@ public class WebDbContext : DbContext
 
     public DbSet<EcologyData> Ecologies { get; set; }
     
+    public DbSet<CommentData> Comments { get; set; }
+    
     public WebDbContext() { }
 
     public WebDbContext(DbContextOptions<WebDbContext> contextOptions)
@@ -23,50 +25,23 @@ public class WebDbContext : DbContext
         // base.OnConfiguring(optionsBuilder);
     }
 
-    /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<MangaData>()
-            .HasMany(x => x.Characters)
-            .WithOne(x => x.Manga)
-            .OnDelete(DeleteBehavior.NoAction);
+        /*modelBuilder.Entity<EcologyData>()
+            .HasOne(p => p.User)
+            .WithMany(x => x.Ecologies)
+            .HasForeignKey(p =>p.UserId);*/
 
-        modelBuilder.Entity<SurveyGroupData>()
-            .HasMany(x => x.Surveys)
-            .WithOne(x => x.SurveyGroup)
-            .OnDelete(DeleteBehavior.NoAction);
-
-
-        modelBuilder.Entity<BrandData>()
-            .HasMany(x => x.Coffe)
-            .WithOne(x => x.Brand)
-            .OnDelete(DeleteBehavior.NoAction);
-
-
-
-
-
-
-
-
-
-
-        modelBuilder.Entity<TypeOfApplianceData>().ToTable("TypeOfAppliances");
-        modelBuilder.Entity<ProducerData>().ToTable("Producers");
-        modelBuilder.Entity<ModelData>().ToTable("Models");
-        modelBuilder.Entity<ClientData>().ToTable("Clients");
-
-        modelBuilder.Entity<ModelData>()
-            .HasOne<ProducerData>()
-            .WithMany()
-            .HasForeignKey(m => m.ProducerId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<ModelData>()
-            .HasOne<TypeOfApplianceData>()
-            .WithMany()
-            .HasForeignKey(m => m.TypeId)
-            .OnDelete(DeleteBehavior.Cascade);
-    }*/
+        modelBuilder.Entity<CommentData>()
+            .HasOne(x => x.Post)
+            .WithMany(x => x.Comments)
+            .HasForeignKey(x => x.PostId);
+        
+        /*modelBuilder.Entity<CommentData>()
+            .HasOne(x => x.User)
+            .WithMany(x => x.Comments)
+            .HasForeignKey(x => x.UserId);*/
+    }
 }
