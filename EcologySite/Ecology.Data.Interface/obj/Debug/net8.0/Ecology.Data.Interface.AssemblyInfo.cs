@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ecology.Data.Interface")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba71355650c922b7e69f61e1ddbb2582e739cf6c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdff6ea222c91bff04c532d55769d423ac280c73")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ecology.Data.Interface")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ecology.Data.Interface")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

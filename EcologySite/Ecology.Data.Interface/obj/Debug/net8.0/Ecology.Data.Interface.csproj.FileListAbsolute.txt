@@ -1,0 +1,15 @@
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/bin/Debug/net8.0/Ecology.Data.Interface.deps.json
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/bin/Debug/net8.0/Ecology.Data.Interface.runtimeconfig.json
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/bin/Debug/net8.0/Ecology.Data.Interface.dll
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/bin/Debug/net8.0/Ecology.Data.Interface.pdb
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.csproj.AssemblyReference.cache
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.GeneratedMSBuildEditorConfig.editorconfig
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.AssemblyInfoInputs.cache
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.AssemblyInfo.cs
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.csproj.CoreCompileInputs.cache
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.sourcelink.json
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.dll
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/refint/Ecology.Data.Interface.dll
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.pdb
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/Ecology.Data.Interface.genruntimeconfig.cache
+/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/Debug/net8.0/ref/Ecology.Data.Interface.dll

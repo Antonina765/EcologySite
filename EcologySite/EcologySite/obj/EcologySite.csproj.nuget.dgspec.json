@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/antoninaber/Desktop/EcologySite/EcologySite/EcologySite.csproj": {}
+    "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/EcologySite.csproj": {}
   },
   "projects": {
-    "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj": {
+    "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
+        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
         "projectName": "Ecology.Data.Fake",
-        "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
+        "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
         "packagesPath": "/Users/antoninaber/.nuget/packages/",
-        "outputPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/obj/",
+        "outputPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/antoninaber/.nuget/NuGet/NuGet.Config"
@@ -27,8 +27,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
-                "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
+              "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
+                "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
               }
             }
           }
@@ -97,14 +97,14 @@
         }
       }
     },
-    "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
+    "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj",
+        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj",
         "projectName": "Ecology.Data.Interface",
-        "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj",
+        "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj",
         "packagesPath": "/Users/antoninaber/.nuget/packages/",
-        "outputPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/obj/",
+        "outputPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/antoninaber/.nuget/NuGet/NuGet.Config"
@@ -186,14 +186,14 @@
         }
       }
     },
-    "/Users/antoninaber/Desktop/EcologySite/Ecology.Data/Ecology.Data.csproj": {
+    "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data/Ecology.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data/Ecology.Data.csproj",
+        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data/Ecology.Data.csproj",
         "projectName": "Ecology.Data",
-        "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data/Ecology.Data.csproj",
+        "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data/Ecology.Data.csproj",
         "packagesPath": "/Users/antoninaber/.nuget/packages/",
-        "outputPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data/obj/",
+        "outputPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/antoninaber/.nuget/NuGet/NuGet.Config"
@@ -209,11 +209,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj": {
-                "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj"
+              "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj": {
+                "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj"
               },
-              "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
-                "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
+              "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
+                "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
               }
             }
           }
@@ -282,14 +282,14 @@
         }
       }
     },
-    "/Users/antoninaber/Desktop/EcologySite/EcologySite/EcologySite.csproj": {
+    "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/EcologySite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite/EcologySite/EcologySite.csproj",
+        "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/EcologySite.csproj",
         "projectName": "EcologySite",
-        "projectPath": "/Users/antoninaber/Desktop/EcologySite/EcologySite/EcologySite.csproj",
+        "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/EcologySite.csproj",
         "packagesPath": "/Users/antoninaber/.nuget/packages/",
-        "outputPath": "/Users/antoninaber/Desktop/EcologySite/EcologySite/obj/",
+        "outputPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/antoninaber/.nuget/NuGet/NuGet.Config"
@@ -305,14 +305,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj": {
-                "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj"
+              "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj": {
+                "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj"
               },
-              "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
-                "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
+              "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
+                "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
               },
-              "/Users/antoninaber/Desktop/EcologySite/Ecology.Data/Ecology.Data.csproj": {
-                "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data/Ecology.Data.csproj"
+              "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data/Ecology.Data.csproj": {
+                "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data/Ecology.Data.csproj"
               }
             }
           }

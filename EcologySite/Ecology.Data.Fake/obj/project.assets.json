@@ -6792,11 +6792,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
+      "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
       "projectName": "Ecology.Data.Fake",
-      "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
+      "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
       "packagesPath": "/Users/antoninaber/.nuget/packages/",
-      "outputPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Fake/obj/",
+      "outputPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/antoninaber/.nuget/NuGet/NuGet.Config"
@@ -6812,8 +6812,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
-              "projectPath": "/Users/antoninaber/Desktop/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
+            "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
+              "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
             }
           }
         }
@@ -6881,13 +6881,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }
