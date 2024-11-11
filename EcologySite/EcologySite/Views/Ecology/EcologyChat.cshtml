@@ -1,0 +1,62 @@
+@using EcologySite.Models.Ecology
+@model List<EcologyViewModel>
+
+@{
+    Layout = "~/Views/Shared/_LayoutEcology.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/css/Ecology/style.css">
+
+<div class="ecologies">
+    <form method="post" action="/Ecology/EcologyChat">
+        <label for="imageUrl">Entet image URL:</label>
+        <input type="text" id="imageUrl" name="Url" />
+        <div>
+            <label for="imageText">Enter text:</label>
+            <input type="text" id="imageText" name="Text" />
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+@if (Model != null && Model.Count > 0)
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <img src="@item.ImageSrc" class="post" alt="Picture"/>
+                <p>@item.Texts.FirstOrDefault()</p>
+                <div class="post-actions">
+                    <span class="dots">•••</span>
+                    <div class="actions-menu">
+                        <a href="#" onclick="showEditForm('@item.Id', '@item.ImageSrc', '@item.Texts.FirstOrDefault()')">Edit</a>
+                        <a asp-action="Remove" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+}
+
+<div id="editForm" style="display:none;">
+    <form method="post" action="/Ecology/UpdatePost">
+        <input type="hidden" id="editId" name="Id" />
+        <label for="editImageUrl">Edit image URL:</label>
+        <input type="text" id="editImageUrl" name="Url" />
+        <div>
+            <label for="editImageText">Edit text:</label>
+            <input type="text" id="editImageText" name="Text" />
+        </div>
+        <button type="submit">Save changes</button>
+    </form>
+</div>
+
+<script>
+    function showEditForm(id, url, text) {
+        document.getElementById("editId").value = id;
+        document.getElementById("editImageUrl").value = url;
+        document.getElementById("editImageText").value = text;
+        document.getElementById("editForm").style.display = "block";
+    }
+</script>

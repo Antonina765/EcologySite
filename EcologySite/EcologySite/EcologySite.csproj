@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\Ecology.Data.Fake\Ecology.Data.Fake.csproj" />
+        <ProjectReference Include="..\Ecology.Data.Interface\Ecology.Data.Interface.csproj" />
+        <ProjectReference Include="..\Ecology.Data\Ecology.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Npgsql" Version="8.0.5" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\background.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\bicycle.JPG" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\calc.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\chat.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\defaltavatar.JPG" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\home.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\logotip.JPG" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\map.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\recycling.JPG" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\renewable.JPG" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,130 @@
+.home-button{
+    background-image: url(../../images/Ecology/home.jpg);
+    background-size: cover;
+    box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    border-radius: 13px;
+    border: 1px solid #695e56;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 23px;
+    height: 20px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #19a63d;
+    transition: transform 0.3s ease-in-out;
+}
+.home-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to bottom,#efc8f8 5%, #f7d0ec 100%);
+    background-color: #fdf632;
+}
+.home-button:hover::after{
+    content: "home";
+    display: flex;
+    align-items: center;
+    color: rgb(193, 44, 44);
+}
+.home-button:active {
+    position: relative;
+    top: 2px;
+}
+
+.map-button {
+    background-image: url(../../images/Ecology/map.jpg);
+    background-size: cover;
+    box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    border-radius: 13px;
+    border: 1px solid #695e56;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 23px;
+    height: 20px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #19a63d;
+}
+.map-button:hover {
+    background: linear-gradient(to bottom,#efc8f8 5%, #f7d0ec 100%);
+    background-color: #fdf632;
+    width: 33px;
+    height: 20px;
+}
+.map-button:hover::after{
+    content: "map";
+    display: flex;
+    width: 33px;
+    align-items: center;
+    color: rgb(193, 44, 44);
+}
+.map-button:active {
+    position: relative;
+    top: 2px;
+}
+
+.chat-button {
+    background-image: url(../../images/Ecology/chat.jpg);
+    background-size: cover;
+    box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    border-radius: 13px;
+    border: 1px solid #566963;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 23px;
+    height: 20px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #19a63d;
+}
+.chat-button:hover {
+    background: linear-gradient(to bottom,#efc8f8 5%, #f7d0ec 100%);
+    background-color: #fdf632;
+    width: 33px;
+    height: 20px;
+}
+.chat-button:hover::after{
+    content: "chat";
+    display: flex;
+    width: 33px;
+    align-items: center;
+    color: rgb(193, 44, 44);
+}
+.chat-button:active {
+    position: relative;
+    top: 2px;
+}
+
+.calculator-button {
+    background-image: url(../../images/Ecology/calc.JPG);
+    background-size: cover;
+    box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    border-radius: 13px;
+    border: 1px solid #695e56;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 23px;
+    height: 20px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #19a63d;
+}
+.calculator-button:hover {
+    background: linear-gradient(to bottom, #efc8f8 5%, #f7d0ec 100%);
+    background-color: #fdf632;
+    width: 33px;
+    height: 20px;
+}
+.calculator-button:hover::after{
+    content: "calculator";
+    display: flex;
+    width: 33px;
+    align-items: center;
+    color: rgb(193, 44, 44);
+}
+.calculator-button:active {
+    position: relative;
+    top: 2px;
+}

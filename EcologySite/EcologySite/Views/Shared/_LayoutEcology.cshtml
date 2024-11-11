@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Calculator of environmental footprint </title>
+    <link href="~/css/Ecology/reset.css" rel="stylesheet" />
+    <link href="~/css/Ecology/style.css" rel="stylesheet" />
+    <link href="~/css/Ecology/button.css" rel="stylesheet" />
+</head>
+<body>
+<header class="head-page">
+    <div class="logotip">
+        <img src="~/images/Ecology/logotip.JPG" alt="logotip" />
+    </div>
+    <div class="name">Environmental footprint</div>
+    <div class="block-of-profile">
+        <img src="~/images/Ecology/defaltavatar.JPG" alt="" class="defaltavatar" />
+        <button class="log-sing" href="#">L/S</button>
+    </div>
+</header>
+<div class="menu-content">
+    <div class="menu custom-list">
+        <ul>
+            <li><a class="home-button" href="/"></a></li>
+            <li><a class="map-button" href="/Ecology/EcologyMap"></a></li>
+            <li><a class="chat-button" href="/Ecology/EcologyChat"></a></li>
+            <li><a class="calculator-button"href="/Ecology/Calculate"></a></li>
+        </ul>
+    </div>
+    <div class="content">
+        @RenderBody()
+    </div>
+</div>
+</body>
+</html>
