@@ -5,5 +5,4 @@ namespace Ecology.Data.Interface.Repositories;
 public interface ICommentRepository<T> : IBaseRepository<T>
     where T : ICommentData
 {
-    IQueryable<ICommentData> Comments { get; }
 }

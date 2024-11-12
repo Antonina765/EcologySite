@@ -6787,33 +6787,35 @@
     ]
   },
   "packageFolders": {
-    "/Users/antoninaber/.nuget/packages/": {}
+    "C:\\Users\\prost\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
+      "projectUniqueName": "C:\\Users\\prost\\Desktop\\EcologySite\\EcologySite\\Ecology.Data.Fake\\Ecology.Data.Fake.csproj",
       "projectName": "Ecology.Data.Fake",
-      "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/Ecology.Data.Fake.csproj",
-      "packagesPath": "/Users/antoninaber/.nuget/packages/",
-      "outputPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Fake/obj/",
+      "projectPath": "C:\\Users\\prost\\Desktop\\EcologySite\\EcologySite\\Ecology.Data.Fake\\Ecology.Data.Fake.csproj",
+      "packagesPath": "C:\\Users\\prost\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\prost\\Desktop\\EcologySite\\EcologySite\\Ecology.Data.Fake\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/antoninaber/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\prost\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj": {
-              "projectPath": "/Users/antoninaber/Desktop/EcologySite-1/EcologySite/Ecology.Data.Interface/Ecology.Data.Interface.csproj"
+            "C:\\Users\\prost\\Desktop\\EcologySite\\EcologySite\\Ecology.Data.Interface\\Ecology.Data.Interface.csproj": {
+              "projectPath": "C:\\Users\\prost\\Desktop\\EcologySite\\EcologySite\\Ecology.Data.Interface\\Ecology.Data.Interface.csproj"
             }
           }
         }
@@ -6822,11 +6824,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -6878,7 +6875,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

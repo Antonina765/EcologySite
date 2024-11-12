@@ -29,19 +29,27 @@ public class WebDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        /*modelBuilder.Entity<EcologyData>()
-            .HasOne(p => p.User)
-            .WithMany(x => x.Ecologies)
-            .HasForeignKey(p =>p.UserId);*/
+        modelBuilder.Entity<UserData>().HasKey(us => us.Id);
+        
+        modelBuilder.Entity<UserData>()
+            .HasMany(p => p.Ecologies)
+            .WithOne(x => x.User)
+            .HasForeignKey(p =>p.UserId);
+        
 
-        modelBuilder.Entity<CommentData>()
-            .HasOne(x => x.Ecology)
-            .WithMany(x => x.Comments)
+        modelBuilder.Entity<EcologyData>().HasKey(ec => ec.Id);
+        
+        modelBuilder.Entity<EcologyData>()
+            .HasMany(x => x.Comments)
+            .WithOne(x => x.Ecology)
             .HasForeignKey(x => x.PostId);
         
-        /*modelBuilder.Entity<CommentData>()
+        
+        modelBuilder.Entity<CommentData>().HasKey(c => c.Id);
+
+        modelBuilder.Entity<CommentData>()
             .HasOne(x => x.User)
             .WithMany(x => x.Comments)
-            .HasForeignKey(x => x.UserId);*/
+            .HasForeignKey(x => x.UserId);
     }
 }

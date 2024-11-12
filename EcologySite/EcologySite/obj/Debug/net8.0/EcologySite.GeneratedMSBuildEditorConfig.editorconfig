@@ -9,51 +9,59 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EcologySite
 build_property.RootNamespace = EcologySite
-build_property.ProjectDir = /Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/
+build_property.ProjectDir = C:\Users\prost\Desktop\EcologySite\EcologySite\EcologySite\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite
+build_property.MSBuildProjectDirectory = C:\Users\prost\Desktop\EcologySite\EcologySite\EcologySite
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Ecology/EcologyChat.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRWNvbG9neS9FY29sb2d5Q2hhdC5jc2h0bWw=
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Ecology/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRWNvbG9neS9JbmRleC5jc2h0bWw=
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Auth/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Ecology/EcologyChat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWNvbG9neVxFY29sb2d5Q2hhdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Ecology/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWNvbG9neVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-xg5xoxupjs
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/antoninaber/Desktop/EcologySite-1/EcologySite/EcologySite/Views/Shared/_LayoutEcology.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRFY29sb2d5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = b-4s7csa62yf
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-zxuprdebgv
+
+[C:/Users/prost/Desktop/EcologySite/EcologySite/EcologySite/Views/Shared/_LayoutEcology.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRFY29sb2d5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-ldvxjuq6gr

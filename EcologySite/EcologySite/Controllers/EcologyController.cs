@@ -109,26 +109,23 @@ public class EcologyController : Controller
     public IActionResult AddComment(int postId, string commentText)
     {
         //var userId
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid) return BadRequest("Invalid comment data.");
+        var comment = new CommentData()
         {
-            var comment = new CommentData()
-            {
-                PostId = postId, 
-                CommentText = commentText
-            }; 
-            _commentRepositoryReal.Add(comment); 
-            return RedirectToAction("EcologyChat");
-        } 
-        return BadRequest("Invalid comment data.");
+            PostId = postId, 
+            CommentText = commentText
+        }; 
+        _commentRepositoryReal.Add(comment); 
+        return RedirectToAction("EcologyChat");
     }
 
     [HttpGet]
-    public async Task<IActionResult> CommentsForPost(int postId)
+    public IActionResult CommentsForPost(int postId)
     {
-        var comments = await _commentRepositoryReal.Comments 
-            .Where(c => c.PostId == postId) 
-            .ToListAsync(); 
-        return View(comments as string);
+        var comm = _commentRepositoryReal.GetAll();
+
+        var commentsFiltered = comm
+            .Where(c => c.PostId == postId).ToList();
+        return View(commentsFiltered);
     }
 }
-
