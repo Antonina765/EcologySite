@@ -1,3 +1,4 @@
+using Ecology.Data.Interface.Models;
 using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
@@ -12,9 +13,13 @@ public interface ICommentRepositoryReal : ICommentRepository<CommentData>
 
 public class CommentRepository : BaseRepository<CommentData>, ICommentRepositoryReal
 {
+    private IQueryable<ICommentData> _comments;
+
     public CommentRepository(WebDbContext webDbContext) : base(webDbContext)
     {
     }
 
     public object Comments { get; set; }
+
+    IQueryable<ICommentData> ICommentRepository<CommentData>.Comments => _comments;
 }

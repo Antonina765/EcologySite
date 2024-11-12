@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ecology.Data.Fake")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdff6ea222c91bff04c532d55769d423ac280c73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f07218f72e00eee607e094cfce1d8420fd70e878")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ecology.Data.Fake")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ecology.Data.Fake")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

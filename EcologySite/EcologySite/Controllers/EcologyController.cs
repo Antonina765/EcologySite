@@ -2,6 +2,8 @@ using Ecology.Data;
 using Ecology.Data.Interface.Models;
 using Ecology.Data.Interface.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Ecology.Data.Repositories;
 using EcologySite.Models.Ecology;
@@ -100,7 +102,7 @@ public class EcologyController : Controller
             .Where(c => c.PostId == postId)
             .Include(c => c.User)
             .ToListAsync();
-        return View(comments);
+        return View(comments as string);
     }*/
 
     [HttpPost]
