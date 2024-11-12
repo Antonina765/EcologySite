@@ -14,15 +14,16 @@ builder.Services.AddDbContext<WebDbContext>(options => options.UseNpgsql(WebDbCo
 
 // Register in DI container our services/repository
 builder.Services.AddScoped<IEcologyRepositoryReal, EcologyRepository>();
+builder.Services.AddScoped<ICommentRepositoryReal, CommentRepository>();
 builder.Services.AddScoped<IUserRepositryReal, UserRepository>();
 
 
 builder.Services.AddScoped<AuthService>();
 
+builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
