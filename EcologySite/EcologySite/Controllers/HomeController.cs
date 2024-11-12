@@ -1,21 +1,30 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using EcologySite.Models;
+using EcologySite.Models.Home;
+using EcologySite.Services;
 
 namespace EcologySite.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    //private readonly ILogger<HomeController> _logger;
+    private AuthService _authService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(AuthService authService)
     {
-        _logger = logger;
+        _authService = authService;
     }
 
     public IActionResult Index()
     {
-        return View();
+        var viewModel = new IndexViewModel();
+
+        var userName = _authService.GetName();
+
+        viewModel.UserName = userName;
+
+        return View(viewModel);
     }
 
     public IActionResult Privacy()

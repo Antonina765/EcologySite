@@ -1,9 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using EcologySite.Models.Home
+@model IndexViewModel
+
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <div>Welcome @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
     <div>
         If you are interested in ecology click <a href="/Ecology/Index">here</a>
     </div>

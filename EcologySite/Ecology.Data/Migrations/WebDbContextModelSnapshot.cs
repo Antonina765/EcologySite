@@ -29,9 +29,6 @@ namespace Ecology.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CommentId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("CommentText")
                         .IsRequired()
                         .HasColumnType("text");
@@ -39,9 +36,14 @@ namespace Ecology.Data.Migrations
                     b.Property<int>("PostId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -62,7 +64,12 @@ namespace Ecology.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Ecologies");
                 });
@@ -100,12 +107,38 @@ namespace Ecology.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Ecology.Data.Models.UserData", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Ecology");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Ecology.Data.Models.Ecology.EcologyData", b =>
+                {
+                    b.HasOne("Ecology.Data.Models.UserData", "User")
+                        .WithMany("Ecologies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Ecology.Data.Models.Ecology.EcologyData", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("Ecology.Data.Models.UserData", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Ecologies");
                 });
 #pragma warning restore 612, 618
         }

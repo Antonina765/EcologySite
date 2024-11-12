@@ -2,6 +2,7 @@ using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Models.Ecology;
 
 namespace Ecology.Data.Repositories;
+
 public interface IEcologyRepositoryReal : IEcologyRepository<EcologyData>
 {
 }
@@ -21,4 +22,5 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
                 
         _webDbContext.SaveChanges();
     }
+    
 }
