@@ -8,7 +8,7 @@ public class BaseRepository<T> : IBaseRepository<T>
         where T : IBaseModel
 {
     protected List<T> _entyties = new List<T>();
-
+    
     public void Add(T data)
     {
         data.Id = _entyties.Any()
@@ -17,7 +17,6 @@ public class BaseRepository<T> : IBaseRepository<T>
 
         _entyties.Add(data);
     }
-
     public void Delete(T data)
     {
         _entyties.Remove(data);

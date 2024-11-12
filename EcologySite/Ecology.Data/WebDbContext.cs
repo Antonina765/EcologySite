@@ -35,7 +35,7 @@ public class WebDbContext : DbContext
             .HasForeignKey(p =>p.UserId);*/
 
         modelBuilder.Entity<CommentData>()
-            .HasOne(x => x.Post)
+            .HasOne(x => x.Ecology)
             .WithMany(x => x.Comments)
             .HasForeignKey(x => x.PostId);
         

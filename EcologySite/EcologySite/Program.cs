@@ -1,6 +1,7 @@
 using Ecology.Data;
 using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Repositories;
+using EcologySite.Services;
 using Microsoft.EntityFrameworkCore;
 using EcologyRepository = Ecology.Data.Repositories.EcologyRepository;
 
@@ -14,6 +15,10 @@ builder.Services.AddDbContext<WebDbContext>(options => options.UseNpgsql(WebDbCo
 
 // Register in DI container our services/repository
 builder.Services.AddScoped<IEcologyRepositoryReal, EcologyRepository>();
+builder.Services.AddScoped<IUserRepositryReal, UserRepository>();
+
+
+builder.Services.AddScoped<AuthService>();
 
 
 var app = builder.Build();
@@ -32,7 +37,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication(); // Who Am I?
+app.UseAuthorization(); // May I?
 
 app.MapControllerRoute(
     name: "default",

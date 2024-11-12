@@ -76,7 +76,7 @@ public class EcologyController : Controller
     }
     
     /*[HttpPost]
-    public IActionResult AddComment(int postId, string commentTect)
+    public IActionResult AddComment(int postId, string commentTect, string userId)
     {
        //var userId
         if (ModelState.IsValid && userId != null)
@@ -106,14 +106,16 @@ public class EcologyController : Controller
     [HttpPost]
     public IActionResult AddComment(int postId, string commentText)
     {
+        //var userId
         if (ModelState.IsValid)
         {
-            var comment = new CommentViewModel()
+            var comment = new CommentData()
             {
                 PostId = postId, 
                 CommentText = commentText
             }; 
-            _commentRepositoryReal.Add(comment); return RedirectToAction("EcologyChat");
+            _commentRepositoryReal.Add(comment); 
+            return RedirectToAction("EcologyChat");
         } 
         return BadRequest("Invalid comment data.");
     }
@@ -124,7 +126,7 @@ public class EcologyController : Controller
         var comments = await _commentRepositoryReal.Comments 
             .Where(c => c.PostId == postId) 
             .ToListAsync(); 
-        return View((object?)comments);
+        return View(comments as string);
     }
 }
 

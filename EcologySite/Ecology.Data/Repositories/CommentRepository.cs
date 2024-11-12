@@ -6,7 +6,8 @@ namespace Ecology.Data.Repositories;
 
 public interface ICommentRepositoryReal : ICommentRepository<CommentData>
 {
-    object Comments { get; set; }
+    public object Comments { get; set; }
+    public void Add(CommentData comment);
 }
 
 public class CommentRepository : BaseRepository<CommentData>, ICommentRepositoryReal
