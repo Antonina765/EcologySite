@@ -39,7 +39,7 @@ public class EcologyController : Controller
             .Select(dbEcology =>
                 new EcologyViewModel
                 {
-                    Id = dbEcology.Id,
+                    PostId = dbEcology.Id,
                     ImageSrc = dbEcology.ImageSrc,
                     Texts = dbEcology.Text
                 }
