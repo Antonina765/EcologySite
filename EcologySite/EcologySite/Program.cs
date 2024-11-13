@@ -7,6 +7,15 @@ using EcologyRepository = Ecology.Data.Repositories.EcologyRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services
+    .AddAuthentication(AuthService.AUTH_TYPE_KEY)
+    .AddCookie(AuthService.AUTH_TYPE_KEY, config =>
+    {
+        config.LoginPath = "/Auth/Login";
+        config.AccessDeniedPath = "/Auth/Deny";
+    });
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
