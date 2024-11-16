@@ -1,0 +1,15 @@
+@model EcologySite.Models.Ecology.PostCreationViewModel
+
+<form method="post" action="/Ecology/EcologyChat" onsubmit="closeModal()">
+    <div>
+        <label for="imageUrl">Enter image URL:</label>
+        <input type="text" id="imageUrl" name="Url" value="@Model.Url" />
+        @Html.ValidationMessageFor(model => model.Url)
+    </div>
+    <div>
+        <label for="imageText">Enter text:</label>
+        <input type="text" id="imageText" name="Text" value="@Model.Text" />
+        @Html.ValidationMessageFor(model => model.Text)
+    </div>
+    <button type="submit">Submit</button>
+</form>

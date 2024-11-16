@@ -34,6 +34,7 @@ public class WebDbContext : DbContext
         modelBuilder.Entity<UserData>()
             .HasMany(p => p.Ecologies)
             .WithOne(x => x.User)
+            .OnDelete(DeleteBehavior.Restrict)
             .HasForeignKey(p =>p.UserId);
         
 
@@ -42,7 +43,8 @@ public class WebDbContext : DbContext
         modelBuilder.Entity<EcologyData>()
             .HasMany(x => x.Comments)
             .WithOne(x => x.Ecology)
-            .HasForeignKey(x => x.PostId);
+            .OnDelete(DeleteBehavior.Cascade)
+            .HasForeignKey(x => x.PostId); //удалять ком при удалении поста
         
         
         modelBuilder.Entity<CommentData>().HasKey(c => c.Id);
@@ -50,6 +52,7 @@ public class WebDbContext : DbContext
         modelBuilder.Entity<CommentData>()
             .HasOne(x => x.User)
             .WithMany(x => x.Comments)
+            .OnDelete(DeleteBehavior.Restrict)
             .HasForeignKey(x => x.UserId);
     }
 }

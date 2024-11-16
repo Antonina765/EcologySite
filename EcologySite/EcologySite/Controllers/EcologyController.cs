@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Ecology.Data;
 using Ecology.Data.Interface.Models;
 using Ecology.Data.Interface.Repositories;
@@ -9,6 +10,7 @@ using Ecology.Data.Repositories;
 using EcologySite.Models.Ecology;
 using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
+using EcologySite.Models;
 using EcologySite.Services;
 
 
@@ -38,7 +40,22 @@ public class EcologyController : Controller
     public IActionResult Index()
     {
         var model = new EcologyViewModel();
+        
         return View(model);
+    }
+
+    [HttpGet]
+    public IActionResult EcologyProfile()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult EcologyProfile(EcologyProfileViewModel profileViewModel)
+    {
+        var profileModel = new EcologyProfileViewModel();
+        var userName = _authService.GetName();
+        profileModel.UserName = userName;
+        return View();
     }
 
     [HttpGet]
@@ -47,7 +64,7 @@ public class EcologyController : Controller
         var id = _authService.GetUserId();
         if (id is null)
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
 
         var user = _userRepositryReal.Get(id.Value);
@@ -74,7 +91,7 @@ public class EcologyController : Controller
     [HttpPost]
     public IActionResult EcologyChat(PostCreationViewModel viewModel)
     {
-        if (_ecologyRepository.IsEclogyTextHas(viewModel.Text))
+        if (CalcCountWorldRepeat.IsEclogyTextHas(viewModel.Text)>=4)
         {
             ModelState.AddModelError(
                 nameof(PostCreationViewModel.Text),
@@ -83,7 +100,7 @@ public class EcologyController : Controller
 
         if (!ModelState.IsValid)
         {
-            return View(viewModel);
+            return View("EcologyChat");
         }
         
         var ecology = new EcologyData
@@ -155,10 +172,14 @@ public class EcologyController : Controller
     [HttpGet]
     public IActionResult CommentsForPost(int postId)
     {
-        var comm = _commentRepositoryReal.GetAll();
-
-        var commentsFiltered = comm
-            .Where(c => c.PostId == postId).ToList();
-        return View(commentsFiltered);
+        var comm = _commentRepositoryReal.GetCommentsByPostId(postId);
+        
+        return View(comm);
+    }
+    
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

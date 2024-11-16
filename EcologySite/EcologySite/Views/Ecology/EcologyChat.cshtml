@@ -6,19 +6,19 @@
 }
 
 <link rel="stylesheet" type="text/css" href="~/css/Ecology/style.css">
+<link rel="stylesheet" type="text/css" href="~/js/script.css">
 
-<div class="ecologies">
-    <form method="post" action="/Ecology/EcologyChat">
-        <label for="imageUrl">Entet image URL:</label>
-        <input type="text" id="imageUrl" name="Url" />
-        @(Html.ValidationMessageFor<List<PostCreationViewModel>>(model => model.Url))
-        <div>
-            <label for="imageText">Enter text:</label>
-            <input type="text" id="imageText" name="Text" />
-            @Html.ValidationMessageFor<List<PostCreationViewModel>>(model => model.Text)
+<div class="add-post">
+    <!-- Кнопка для открытия модального окна --> 
+    <button id="openModalBtn" class="open-modal-btn">Add Post</button> 
+    <!-- Модальное окно -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span> 
+            @Html.Partial("PostCreateForm", new EcologySite.Models.Ecology.PostCreationViewModel())
         </div>
-        <button type="submit">Submit</button>
-    </form>
+        <script src="script.js"></script>
+    </div>
 </div>
 
 @if (Model != null && Model.Count > 0)
