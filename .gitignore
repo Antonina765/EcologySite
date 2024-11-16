@@ -13,3 +13,16 @@ EcologySite/.idea/.idea.EcologySite/.idea/workspace.xml
 /EcologySite/.idea/.idea.EcologySite/.idea/shelf/Uncommitted_changes_before_Update_at_12_11_24,_16_54_[Changes]/Ecology.Data.AssemblyInfoInputs.cache
 /EcologySite/.idea/.idea.EcologySite/.idea/shelf/Uncommitted_changes_before_Update_at_12_11_24,_23_44_[Changes]/Ecology.Data.Fake4.dll
 /EcologySite/.idea/.idea.EcologySite/.idea/shelf/Uncommitted_changes_before_Update_at_12_11_24,_23_44_[Changes]/Ecology.Data.Fake4.dll
+EcologySite/.idea/.idea.EcologySite/.idea/shelf/Uncommitted_changes_before_Update_at_12_11_24,_23_44_[Changes]
+*.cache
+*.dll
+*.info
+*.pdb
+*.patch
+EcologySite/Ecology.Data/bin/Debug/net8.0
+EcologySite/Ecology.Data/obj
+EcologySite/Ecology.Data.Fake/bin
+EcologySite/Ecology.Data.Fake/obj
+EcologySite/Ecology.Data.Interface/bin
+EcologySite/Ecology.Data.Interface/obj
+EcologySite/EcologySite/bin
