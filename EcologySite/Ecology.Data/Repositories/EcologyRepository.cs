@@ -58,7 +58,14 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
    
     public void Create(EcologyData ecology, int currentUserId, int postId)
     {
+        // First в целом лучше не использовать потому что он выбрасывает исключение, что очень затратно
+        // лучше написать FirstOrDefault(...) и потом сделать типо if(creator == null) {и тут делаешь логику которая нужна, например пишешь просто выход из метода}
+        
         var creator = _webDbContext.Users.First(x => x.Id == currentUserId);
+        
+        // если ты хочешь получить все комментарии к посту, то тебе нужно просто найти их через Where(...)
+        // тут у тебя Comments это не коллекция, а просто CommentData, потому что ты пишешь First() (этот метод выбирает первую штуку совпадающую с условием)
+        
         var comments = _webDbContext.Comments.First(x => x.Id == postId);
 
         ecology.User = creator;

@@ -34,6 +34,9 @@ public class CommentRepository : BaseRepository<CommentData>, ICommentRepository
                            && post.User.Id == userId);
         
         // Проверка, есть ли комментарии у постов пользователя
+
+        // Для того чтобы ты могла применять Linq запросы, нужно чтобы коллекция была IEnumerable (про Where)
+        // Ecology у тебя не является коллекцией вообще, поэтому ты не можешь применять Linq запросы (про Any и Select)
         var authorsPosts = usersComments
             .Where(comment => 
                 comment
@@ -59,6 +62,11 @@ public class CommentRepository : BaseRepository<CommentData>, ICommentRepository
                     HasCommentAuther = false
                 });
 
+        
+        // зачем вообще так мудрить, ты получила в первой части посты, затем в этих постах ищешь его комментарии и все
+        // (как я понял ты хочешь получить комментарии пользователя только у постов, которые он и создал)
+        // если нет, то все НАМНОГО проще, тебе нужно просто взять комментарии и выбрать из них комментарии с его айди
+        // будет типо так: var comments = _dbSet.Where(x => x.UserId == userId).ToList();
             return authorsPosts.Union(notAuthorsPosts).ToList();
         }
 }

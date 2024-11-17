@@ -61,6 +61,10 @@ public class EcologyController : Controller
             .GetCommentAuthors(userId)
             .Select(x => new EcologyProfileViewModel
             {
+                // тут что ты хочешь сделать я вообще не понимаю
+                // у тебя UserName нигде не объявлен
+                // если ты имеешь ввиду profileViewModel.UserName, то это вообше строка 
+                // я не опнимаю что нужно сделать, поэтому и не знаю чем помочь
                 Posts = UserName
                     .Posts
                     .Select(p => new EcologyViewModel
