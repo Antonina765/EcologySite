@@ -75,7 +75,7 @@ public class EcologyController : Controller
                     })
                     .ToList(),
 
-                Comments = UseЫrName
+                Comments = UserName
                     .Comments
                     .Select(c => new CommentViewModel
                     {
