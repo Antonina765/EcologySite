@@ -7,7 +7,7 @@ namespace Ecology.Data.Repositories;
 public interface ICommentRepositoryReal : ICommentRepository<CommentData>
 {
     IEnumerable<CommentData> GetCommentsByPostId(int postId);
-    IEnumerable<CommentAuthor> GetCommentAuthors(int userId);
+    CommentsAndPostsByUser GetCommentAuthors(int userId);
 }
 
 public class CommentRepository : BaseRepository<CommentData>, ICommentRepositoryReal
@@ -20,63 +20,28 @@ public class CommentRepository : BaseRepository<CommentData>, ICommentRepository
     {
         return _dbSet.Where(c => c.PostId == postId).ToList();
     }
+
+    // Поменяй название метода потому что оно ВООБЩЕ не подходит
     
-    public IEnumerable<CommentAuthor> GetCommentAuthors(int userId)
+    // в том как придумал я не вижу смысла оставлять IEnumerable
+    public CommentsAndPostsByUser GetCommentAuthors(int userId)
     {
-        // Проверка, есть ли у пользователя комментарии
-        var usersComments = _dbSet
-            .Where(comment => comment.User != null 
-                              && comment.User.Id == userId);
-        var comments = _dbSet
-            .Where(x => 
-                x.UserId == userId)
-            .ToList();
+        // мы получаем юзера, потому в нем лежат и комменты и посты которые он оставил, и уже от него мы пойдем дальше
+        var user = (_dbSet.FirstOrDefault(us => us.UserId == userId))?.User; // собственно получаем юзера
 
-        // Проверка, есть ли у пользователя посты
-        var usersPosts = _dbSet
-            .Where(post => post.User != null 
-                           && post.User.Id == userId);
-        var posts = _dbSet
-            .Where(x => 
-                x.UserId == userId)
-            .ToList();
-        
-        
-        /* Проверка, есть ли комментарии у постов пользователя
+        if (user is null) // нужно узнать все ли ок и проверить на null
+            return null;  
+        // возращаем null чтобы код который дальше не выполняли
+        // todo нужно в контроллере это тоже проверять и в случае чего показывать что была ошибка в ui 
+        // что то типо "произошла ошибка при получении комментариев и постов"
 
-        // Для того чтобы ты могла применять Linq запросы, нужно чтобы коллекция была IEnumerable (про Where)
-        // Ecology у тебя не является коллекцией вообще, поэтому ты не можешь применять Linq запросы (про Any и Select)
-        var authorsPosts = usersComments
-            .Where(comment => 
-                comment
-                    .Ecology
-                    .Any(post => post.User != null 
-                                 && post.User.Id == userId))
-            .Select(x => new CommentAuthor
-                {
-                    Name = x.Title,
-                    HasCommentAuther = true
-                });
+        var comments = user.Comments;       // получаем все комментарии пользователя
+        var posts = user.Ecologies;          // получаем все посты пользователя
 
-        // Проверка, есть ли комментарии у постов, не созданных пользователем
-        var notAuthorsPosts = usersComments
-            .Where(comment => 
-                !comment
-                    .Ecology
-                    .Any(post => post.User != null 
-                                 && post.User.Id == userId))
-            .Select(x => new CommentAuthor
-                {
-                    Name = x.Title,
-                    HasCommentAuther = false
-                });
+        if (comments is null || posts is null)                      // снова проверяем на null, по той же причине что и выше
+            return null;
 
-        
-        // зачем вообще так мудрить, ты получила в первой части посты, затем в этих постах ищешь его комментарии и все
-        // (как я понял ты хочешь получить комментарии пользователя только у постов, которые он и создал)
-        // если нет, то все НАМНОГО проще, тебе нужно просто взять комментарии и выбрать из них комментарии с его айди
-        // будет типо так: var comments = _dbSet.Where(x => x.UserId == userId).ToList();
-            return authorsPosts.Union(notAuthorsPosts).ToList();*/
-        return comments + posts;
-        }
+        return new CommentsAndPostsByUser(userId, comments.ToList(), posts.ToList());     
+        // посмотри этот класс чтобы понять, там просто контруктор и свойства
+    }
 }
