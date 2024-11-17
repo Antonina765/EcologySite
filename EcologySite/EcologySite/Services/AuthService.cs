@@ -20,7 +20,7 @@ public class AuthService
 
     public string? GetName()
     {
-        return GetClaimValue(CLAIM_TYPE_NAME);
+        return GetClaimValue(CLAIM_TYPE_NAME) ?? "Guest";
     }
 
     public int? GetUserId()

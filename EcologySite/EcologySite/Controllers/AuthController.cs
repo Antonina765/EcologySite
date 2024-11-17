@@ -49,6 +49,11 @@ public class AuthController : Controller
                 new Claim (ClaimTypes.AuthenticationMethod, AuthService.AUTH_TYPE_KEY),
             };
 
+            if (viewModel.UserName == "admin" && viewModel.Password == "admin")
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+            }
+
             var identity = new ClaimsIdentity(claims, AuthService.AUTH_TYPE_KEY);
 
             var principal = new ClaimsPrincipal(identity);
@@ -57,7 +62,7 @@ public class AuthController : Controller
                 .SignInAsync(principal)
                 .Wait();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Ecology");
         }
 
         [HttpGet]
@@ -82,6 +87,6 @@ public class AuthController : Controller
                 .SignOutAsync()
                 .Wait();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Ecology");
         }
     }

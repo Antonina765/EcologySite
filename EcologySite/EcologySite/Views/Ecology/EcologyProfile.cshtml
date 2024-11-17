@@ -1,6 +1,46 @@
 @using EcologySite.Models.Ecology
-@model List<EcologyViewModel>
+@model EcologyProfileViewModel
 
 @{
     Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+}
+
+<h3>Your Posts</h3>
+@if (Model.Posts != null && Model.Posts.Count > 0)
+{
+    <ul>
+        @foreach (var post in Model.Posts)
+        {
+            <li>
+                <div class="post">
+                    <img src="@post.ImageSrc" alt="Post Image" class="post-image" />
+                    <p>@post.Texts</p>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>You have not created any posts yet.</p>
+}
+
+<h3>Your Comments</h3>
+@if (Model.Comments != null && Model.Comments.Count > 0)
+{
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>
+                <div class="comment">
+                    <p class="post-text">@comment.PostText</p>
+                    <p>@comment.CommentText</p>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>You have not left any comments yet.</p>
 }

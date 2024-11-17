@@ -56,3 +56,24 @@ header .logo img {
     position: relative;
     top: 2px;
 }
+
+.post {
+    margin-bottom: 20px;
+}
+
+.post-image {
+    max-width: 100px;
+    max-height: 100px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.comment {
+    margin-bottom: 20px;
+}
+
+.post-text {
+    color: #2c2cec;
+    font-weight: bold;
+}

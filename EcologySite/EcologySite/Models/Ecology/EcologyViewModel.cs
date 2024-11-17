@@ -11,4 +11,6 @@ public class EcologyViewModel
     public string UserName { get; set; }
     //public EcologyUserViewModel User { get; set; }
     public ICollection<CommentViewModel> Comments { get; set; }
+    
+    public bool CanDelete { get; set; }
 }

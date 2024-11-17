@@ -1,11 +1,14 @@
 using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Models.Ecology;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecology.Data.Repositories;
 
 public interface IEcologyRepositoryReal : IEcologyRepository<EcologyData>
 {
     bool IsEclogyTextHas(string text);
+    void Create(EcologyData ecology, int currentUserId, int postId);
+    IEnumerable<EcologyData>GetAllWithUsersAndComments();
 }
 
 public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepositoryReal
@@ -23,6 +26,7 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
                 
         _webDbContext.SaveChanges();
     }
+    
     public bool IsEclogyTextHas(string text)
     {
         var words = text.Split(new[] { ' ', '.', ',', ';', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
@@ -42,5 +46,24 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
         }
 
         return !wordCounts.Any(kv => kv.Value >= 4);
+    }
+    
+    public IEnumerable<EcologyData> GetAllWithUsersAndComments()
+    {
+        return _dbSet
+            .Include(x => x.User)
+            .Include(x => x.Comments)
+            .ToList();
+    }
+   
+    public void Create(EcologyData ecology, int currentUserId, int postId)
+    {
+        var creator = _webDbContext.Users.First(x => x.Id == currentUserId);
+        var comments = _webDbContext.Comments.First(x => x.Id == postId);
+
+        ecology.User = creator;
+        ecology.Comments = comments;
+
+        Add(ecology);
     }
 }
