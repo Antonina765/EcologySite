@@ -20,28 +20,26 @@ public class CommentRepository : BaseRepository<CommentData>, ICommentRepository
     {
         return _dbSet.Where(c => c.PostId == postId).ToList();
     }
-
-    // Поменяй название метода потому что оно ВООБЩЕ не подходит
     
-    // в том как придумал я не вижу смысла оставлять IEnumerable
     public CommentsAndPostsByUser GetCommentAuthors(int userId)
     {
-        // мы получаем юзера, потому в нем лежат и комменты и посты которые он оставил, и уже от него мы пойдем дальше
-        var user = (_dbSet.FirstOrDefault(us => us.UserId == userId))?.User; // собственно получаем юзера
+        // мы получаем юзера, потому в нем лежат и комменты и посты которые он оставил
+        var user = _webDbContext.Users.FirstOrDefault(u => u.Id == userId);
+        //var user = (_dbSet.FirstOrDefault(us => us.UserId == userId))?.User;
 
-        if (user is null) // нужно узнать все ли ок и проверить на null
-            return null;  
-        // возращаем null чтобы код который дальше не выполняли
-        // todo нужно в контроллере это тоже проверять и в случае чего показывать что была ошибка в ui 
-        // что то типо "произошла ошибка при получении комментариев и постов"
-
-        var comments = user.Comments;       // получаем все комментарии пользователя
-        var posts = user.Ecologies;          // получаем все посты пользователя
-
-        if (comments is null || posts is null)                      // снова проверяем на null, по той же причине что и выше
+        if (user is null)
+        {
             return null;
+        }  
+        
+        var comments = user.Comments;
+        var posts = user.Ecologies;
 
-        return new CommentsAndPostsByUser(userId, comments.ToList(), posts.ToList());     
-        // посмотри этот класс чтобы понять, там просто контруктор и свойства
+        if (comments is null || posts is null)
+        {
+            return null;
+        }
+
+        return new CommentsAndPostsByUser(userId, comments.ToList(), posts.ToList());  
     }
 }

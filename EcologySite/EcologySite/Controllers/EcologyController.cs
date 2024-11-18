@@ -48,15 +48,42 @@ public class EcologyController : Controller
     [HttpGet]
     public IActionResult EcologyProfile()
     {
-        return View();
+        var userId = _authService.GetUserId();
+
+        if (userId is null)
+        {
+            throw new Exception("User is not authenticated");
+        }
+
+        var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
+        
+        var viewModel = new EcologyProfileViewModel();
+
+        info.Comments.Select(dbComment => new CommentForProfileViewModel()
+        {
+            CommentId = dbComment.Id,
+            CommentText = dbComment.CommentText
+        });
+        viewModel.Posts = info
+            .Posts
+            .Select(dbPost => new EcologyForProfileViewModel
+            {
+                ImageSrc = dbPost.ImageSrc,
+                Texts = dbPost.Text,
+            })
+            .ToList();
+        return View(viewModel);
     }
+    
     [HttpPost]
     public IActionResult EcologyProfile(EcologyProfileViewModel profileViewModel /* я не особо понимаю зачем этот profileViewModel как параметр */)
     {
         var userId = _authService.GetUserId();
-        
+
         if (userId is null)
+        {
             throw new Exception("User is not authenticated");
+        }
         // нужно просто как то показать в ui что не авторизован, лучше поменять на какую то свою логику в ui условно передать на индекс или на что то еще и написать что мол ошибка
 
         var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
