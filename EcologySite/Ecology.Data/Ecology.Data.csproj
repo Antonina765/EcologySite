@@ -28,6 +28,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Ecology.Data.Fake\Ecology.Data.Fake.csproj" />
         <ProjectReference Include="..\Ecology.Data.Interface\Ecology.Data.Interface.csproj" />
+        <ProjectReference Include="..\Enums\Enums.csproj" />
     </ItemGroup>
 
 </Project>

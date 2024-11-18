@@ -1,3 +1,4 @@
+using Enums.Users;
 namespace Ecology.Data.Interface.Models;
 
 public interface IUser : IBaseModel
@@ -7,4 +8,6 @@ public interface IUser : IBaseModel
     //public decimal Coins { get; set; }
 
     public string AvatarUrl { get; set; }
+    
+    public Role Role { get; set; }
 }

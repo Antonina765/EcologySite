@@ -2,6 +2,7 @@ using Ecology.Data;
 using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Repositories;
 using EcologySite.Services;
+using Everything.Data;
 using Microsoft.EntityFrameworkCore;
 using EcologyRepository = Ecology.Data.Repositories.EcologyRepository;
 
@@ -12,7 +13,8 @@ builder.Services
     .AddCookie(AuthService.AUTH_TYPE_KEY, config =>
     {
         config.LoginPath = "/Auth/Login";
-        config.AccessDeniedPath = "/Auth/Deny";
+        config.AccessDeniedPath = "/Home/Forbidden";
+
     });
 
 
@@ -26,13 +28,16 @@ builder.Services.AddScoped<IEcologyRepositoryReal, EcologyRepository>();
 builder.Services.AddScoped<ICommentRepositoryReal, CommentRepository>();
 builder.Services.AddScoped<IUserRepositryReal, UserRepository>();
 
-
+builder.Services.AddScoped<EnumHelper>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();
+
+var seed = new Seed();
+seed.Fill(app.Services);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
