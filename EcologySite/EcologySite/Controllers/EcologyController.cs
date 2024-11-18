@@ -51,39 +51,22 @@ public class EcologyController : Controller
         return View();
     }
     [HttpPost]
-    public IActionResult EcologyProfile(EcologyProfileViewModel profileViewModel)
+    public IActionResult EcologyProfile(EcologyProfileViewModel profileViewModel /* я не особо понимаю зачем этот profileViewModel как параметр */)
     {
+        var userId = _authService.GetUserId();
+        
+        if (userId is null)
+            throw new Exception("User is not authenticated");
+        // нужно просто как то показать в ui что не авторизован, лучше поменять на какую то свою логику в ui условно передать на индекс или на что то еще и написать что мол ошибка
+
+        var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
+
         var profileModel = new EcologyProfileViewModel();
-        profileModel.UserName = _authService.GetName()!;
-        var userId = _authService.GetUserId()!.Value;
-
-        profileModel.Comments = _commentRepositoryReal
-            .GetCommentAuthors(userId)
-            .Select(x => new EcologyProfileViewModel
-            {
-                // тут что ты хочешь сделать я вообще не понимаю
-                // у тебя UserName нигде не объявлен
-                // если ты имеешь ввиду profileViewModel.UserName, то это вообше строка 
-                // я не опнимаю что нужно сделать, поэтому и не знаю чем помочь
-                Posts = UserName
-                    .Posts
-                    .Select(p => new EcologyViewModel
-                    {
-                        PostId = p.Id,
-                        ImageSrc = p.ImageSrc,
-                        Texts = p.Text
-                    })
-                    .ToList(),
-
-                Comments = UserName
-                    .Comments
-                    .Select(c => new CommentViewModel
-                    {
-                        PostText = c.Post.Text,
-                        CommentText = c.CommentText
-                    })
-                    .ToList()
-            });
+        
+        // дальше нужно просто присвоить все значения, 
+        //todo ВАЖНО!!!! тебе нужно мапить CommentData в CommentViewModel и EcologyData в EcologyViewModel !!!!!!!!!
+        
+        
         
         return View(profileModel);
     }
