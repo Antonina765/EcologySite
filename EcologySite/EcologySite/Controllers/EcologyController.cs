@@ -41,29 +41,31 @@ public class EcologyController : Controller
 
     public IActionResult Index()
     {
-        var model = new EcologyViewModel();
-        
         // Получаем ссылки на перенесенные посты
         var movedPostReferences = _webDbContext.MovedPostReferences.ToList();
         var movedPosts = movedPostReferences 
-            .Select(ref => _ecologyRepository
-            .FindById(ref.Id)) 
+            .Select(reference =>
+            {
+                var post = _ecologyRepository.FindById(reference.PostId);
+                return post;
+            })
             .Where(post => post != null) 
             .Select(post => new EcologyViewModel 
-            {
+            { 
                 PostId = post.Id, 
                 ImageSrc = post.ImageSrc, 
                 Texts = post.Text, 
                 UserName = post.User?.Login ?? "Unknown", 
-                CanDelete = false, // Перенесенные посты не могут быть удалены 
+                CanDelete = false, // Перенесенные посты не могут быть удалены
                 CanMove = false // Перенесенные посты не могут быть снова перенесены
             }).ToList();
+        
         var viewModel = new MovedPostsViewModel
         {
             Posts = movedPosts
         };
         
-        return View(model);
+        return View(viewModel);
     }
 
     [HttpGet]
