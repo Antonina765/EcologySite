@@ -75,29 +75,6 @@ public class EcologyController : Controller
         return View(viewModel);
     }
     
-    [HttpPost]
-    public IActionResult EcologyProfile(EcologyProfileViewModel profileViewModel /* я не особо понимаю зачем этот profileViewModel как параметр */)
-    {
-        var userId = _authService.GetUserId();
-
-        if (userId is null)
-        {
-            throw new Exception("User is not authenticated");
-        }
-        // нужно просто как то показать в ui что не авторизован, лучше поменять на какую то свою логику в ui условно передать на индекс или на что то еще и написать что мол ошибка
-
-        var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
-
-        var profileModel = new EcologyProfileViewModel();
-        
-        // дальше нужно просто присвоить все значения, 
-        //todo ВАЖНО!!!! тебе нужно мапить CommentData в CommentViewModel и EcologyData в EcologyViewModel !!!!!!!!!
-        
-        
-        
-        return View(profileModel);
-    }
-  
     [HttpGet]
     public IActionResult EcologyChat()
     {
