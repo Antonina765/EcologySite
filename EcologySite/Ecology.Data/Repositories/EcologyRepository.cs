@@ -1,5 +1,6 @@
 using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Models.Ecology;
+using Everything.Data.DataLayerModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecology.Data.Repositories;
@@ -8,6 +9,10 @@ public interface IEcologyRepositoryReal : IEcologyRepository<EcologyData>
 {
     void Create(EcologyData ecology, int currentUserId, int postId);
     IEnumerable<EcologyData>GetAllWithUsersAndComments();
+    
+    EcologyData FindById(int postId);
+    void AddPostToMovedPosts(MovedPostReference movedPost);
+
 }
 
 public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepositoryReal
@@ -26,6 +31,21 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
         _webDbContext.SaveChanges();
     }
 
+    public EcologyData FindById(int postId)
+    {
+        return _webDbContext.Ecologies.Find(postId);
+    }
+
+    public void AddPostToMovedPosts(MovedPostReference movedPost)
+    {
+        var movedPostReference = new MovedPostReference
+        {
+            PostId = movedPost.Id
+        };
+
+        _webDbContext.MovedPostReferences.Add(movedPostReference);
+        _webDbContext.SaveChanges();
+    }
     
     public IEnumerable<EcologyData> GetAllWithUsersAndComments()
     {

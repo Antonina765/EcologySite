@@ -1,4 +1,5 @@
 @model EcologySite.Models.Ecology.EcologyViewModel
+@model EcologySite.Models.Ecology.MovedPostsViewModel
 @{
     Layout ="~/Views/Shared/_LayoutEcology.cshtml";
 }
@@ -29,5 +30,17 @@
                 <span class="text">Sorting and recycling of waste helps reduce the amount of garbage in landfills and conserve natural resources</span>
             </div>
         </div>
+        <ul>
+            @foreach (var post in Model.Posts)
+            {
+            <li>
+                <div class="post">
+                    <img src="@post.ImageSrc" alt="Post Image" class="post-image" />
+                    <p>@post.Texts</p>
+                    <p>Posted by: @post.UserName</p>
+                </div>
+            </li>
+            }
+        </ul>
     </div>
 </div>

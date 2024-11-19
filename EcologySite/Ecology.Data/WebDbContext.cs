@@ -1,5 +1,6 @@
 ﻿using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
+using Everything.Data.DataLayerModels;
 using Microsoft.EntityFrameworkCore;
 //using Microsoft.Identity.Client;
 
@@ -12,6 +13,7 @@ public class WebDbContext : DbContext
 
     public DbSet<EcologyData> Ecologies { get; set; }
     
+    public DbSet<MovedPostReference> MovedPostReferences { get; set; }
     public DbSet<CommentData> Comments { get; set; }
     
     public WebDbContext() { }

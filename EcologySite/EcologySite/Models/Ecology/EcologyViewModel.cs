@@ -13,4 +13,6 @@ public class EcologyViewModel
     public ICollection<CommentViewModel> Comments { get; set; }
     
     public bool CanDelete { get; set; }
+    
+    public bool CanMove { get; set; }
 }
