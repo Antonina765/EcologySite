@@ -14,7 +14,7 @@
     <div class="logo">
         <img src="~/images/Ecology/logotip.JPG" alt="logo" />
     </div>
-    <div>Welcome @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
+    <div>Welcome @(string.IsNullOrEmpty(Model.UserName) ? "Guest" : Model.UserName)</div>
     <div class="reg-auth">
         <ul class="navbar-nav flex-grow-1">
             @if (!User.Identity?.IsAuthenticated ?? false)
@@ -30,6 +30,12 @@
             {
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Exit</a>
+            </li>
+            }
+            @if (authService.IsAdmin())
+            {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
             </li>
             }
         </ul>
