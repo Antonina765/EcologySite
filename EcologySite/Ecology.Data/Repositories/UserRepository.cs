@@ -6,9 +6,11 @@ namespace Ecology.Data.Repositories;
 
 public interface IUserRepositryReal : IUserRepositry<UserData>
 {
+    string GetAvatarUrl(int userId);
     bool IsAdminExist();
     UserData? Login(string login, string password);
     void Register(string login, string password, Role role = Role.User);
+    void UpdateAvatarUrl(int userId, string avatarUrl);
     void UpdateRole(int userId, Role role);
 }
 
@@ -21,6 +23,11 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
     public override void Add(UserData data)
     {
         throw new NotImplementedException("User method Register to create a new User");
+    }
+    
+    public string GetAvatarUrl(int userId)
+    {
+        return _dbSet.First(x => x.Id == userId).AvatarUrl;
     }
 
     public bool IsAdminExist()
@@ -61,6 +68,13 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
         };
 
         _dbSet.Add(user);
+        _webDbContext.SaveChanges();
+    }
+    
+    public void UpdateAvatarUrl(int userId, string avatarUrl)
+    {
+        var user = _dbSet.First(x => x.Id == userId);
+        user.AvatarUrl = avatarUrl;
         _webDbContext.SaveChanges();
     }
 

@@ -27,6 +27,7 @@ builder.Services.AddDbContext<WebDbContext>(options => options.UseNpgsql(WebDbCo
 builder.Services.AddScoped<IEcologyRepositoryReal, EcologyRepository>();
 builder.Services.AddScoped<ICommentRepositoryReal, CommentRepository>();
 builder.Services.AddScoped<IUserRepositryReal, UserRepository>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddScoped<EnumHelper>();
 builder.Services.AddScoped<AuthService>();

@@ -11,6 +11,7 @@ using Ecology.Data.Repositories;
 using EcologySite.Models.Ecology;
 using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
+using EcologySite.Controllers.AuthAttributes;
 using EcologySite.Models;
 using EcologySite.Services;
 using Everything.Data.DataLayerModels;
@@ -25,18 +26,21 @@ public class EcologyController : Controller
     private WebDbContext _webDbContext;
     private ICommentRepositoryReal _commentRepositoryReal;
     private AuthService _authService;
+    private IWebHostEnvironment _webHostEnvironment;
 
     public EcologyController(IEcologyRepositoryReal ecologyRepository, 
         ICommentRepositoryReal commentRepositoryReal,
         IUserRepositryReal userRepositryReal,
         AuthService authService,
-        WebDbContext webDbContext)
+        WebDbContext webDbContext,
+        IWebHostEnvironment webHostEnvironment)
     {
         _ecologyRepository = ecologyRepository;
         _commentRepositoryReal = commentRepositoryReal;
         _webDbContext = webDbContext;
         _userRepositryReal = userRepositryReal;
         _authService = authService;
+        _webHostEnvironment = webHostEnvironment;
     }
 
     public IActionResult Index()
@@ -71,8 +75,10 @@ public class EcologyController : Controller
     [HttpGet]
     public IActionResult EcologyProfile()
     {
+        var viewModel = new EcologyProfileViewModel();
         var userId = _authService.GetUserId();
-
+        viewModel.AvatarUrl = _userRepositryReal.GetAvatarUrl(userId!.Value);
+        
         if (userId is null)
         {
             throw new Exception("User is not authenticated");
@@ -80,8 +86,6 @@ public class EcologyController : Controller
 
         var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
         
-        var viewModel = new EcologyProfileViewModel();
-
         info.Comments.Select(dbComment => new CommentForProfileViewModel()
         {
             CommentId = dbComment.Id,
@@ -263,5 +267,28 @@ public class EcologyController : Controller
     public IActionResult Forbidden()
     {
         return View();
+    }
+    
+    [IsAuthenticated]
+    [HttpPost]
+    public IActionResult UpdateAvatar(IFormFile avatar)
+    {
+        var webRootPath = _webHostEnvironment.WebRootPath;
+
+        var userId = _authService.GetUserId()!.Value;
+        var avatarFileName = $"avatar-{userId}.jpg";
+
+        var path = Path.Combine(webRootPath, "images", "avatars", avatarFileName);
+        using (var fileStream = new FileStream(path, FileMode.Create))
+        {
+            avatar
+                .CopyToAsync(fileStream)
+                .Wait();
+        }
+
+        var avatarUrl = $"/images/avatars/{avatarFileName}";
+        _userRepositryReal.UpdateAvatarUrl(userId, avatarUrl);
+
+        return RedirectToAction("Profile");
     }
 }
