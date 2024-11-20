@@ -27,6 +27,19 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
     {
         return _dbSet.Any(x => x.Role.HasFlag(Role.Admin));
     }
+    /*public bool IsAdminExist()
+    {
+        using (var context = new ApplicationDbContext())
+        {
+            var query = from u in context.Users
+                where u.Role == "Admin" // Убедитесь, что колонка `Role` существует
+                //where u.UserRole == "Admin" // Используйте существующую колонку
+                select u;
+
+            return query.Any();
+        }
+    }*/
+
 
     public UserData? Login(string login, string password)
     {

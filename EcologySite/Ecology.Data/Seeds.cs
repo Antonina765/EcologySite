@@ -3,7 +3,7 @@ using Ecology.Data.Models;
 using Ecology.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Everything.Data;
+namespace Ecology.Data;
 public class Seed
 { 
     public void Fill(IServiceProvider service)

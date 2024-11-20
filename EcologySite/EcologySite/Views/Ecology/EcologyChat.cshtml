@@ -14,8 +14,8 @@
     <!-- Модальное окно -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span> 
-            @Html.Partial("PostCreateForm", new EcologySite.Models.Ecology.PostCreationViewModel())
+            <span class="close-btn">&times;</span>
+            @await Html.PartialAsync("PostCreateForm", new EcologySite.Models.Ecology.PostCreationViewModel())
         </div>
         <script src="script.js"></script>
     </div>
@@ -34,7 +34,7 @@
         <img src="@ecology.ImageSrc" class="post" alt="Picture"/>
         <p>@ecology.Texts.FirstOrDefault()</p>
 
-        @if (User.Identity.Name == @ecology.UserName)
+        @if (User.Identity?.Name == @ecology.UserName)
         {
         <div class="post-actions">
             <span class="dots">•••</span>
