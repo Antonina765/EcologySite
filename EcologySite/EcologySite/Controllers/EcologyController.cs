@@ -170,9 +170,11 @@ public class EcologyController : Controller
         {
             return View("EcologyChat");
         }
+        
         var currentUserId = _authService.GetUserId();
         
         string imageUrl = viewModel.Url;
+        
         if (imageFile != null && imageFile.Length > 0)
         {
             var webRootPath = _webHostEnvironment.WebRootPath; 

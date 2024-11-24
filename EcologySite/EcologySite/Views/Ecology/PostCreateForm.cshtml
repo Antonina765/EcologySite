@@ -11,6 +11,12 @@
         <input type="file" asp-for="ImageFile" />
         @Html.ValidationMessageFor(model => model.ImageFile)
     </div>
+    @if (ViewData.ModelState["Url"]?.Errors.Count > 0 || ViewData.ModelState["ImageFile"]?.Errors.Count > 0)
+    {
+    <div class="text-danger">
+        <span>Please provide either an image URL or upload an image, not both.</span>
+    </div>
+    }
     <div>
         <label for="imageText">Enter text:</label>
         <input type="text" id="imageText" name="Text" value="@Model.Text" />
