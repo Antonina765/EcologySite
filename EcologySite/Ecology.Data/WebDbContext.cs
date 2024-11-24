@@ -12,8 +12,6 @@ public class WebDbContext : DbContext
     public DbSet<UserData> Users { get; set; }
 
     public DbSet<EcologyData> Ecologies { get; set; }
-    
-    public DbSet<MovedPostReference> MovedPostReferences { get; set; }
     public DbSet<CommentData> Comments { get; set; }
     
     public WebDbContext() { }

@@ -7,6 +7,11 @@
         @Html.ValidationMessageFor(model => model.Url)
     </div>
     <div>
+        <label asp-for="ImageFile">Upload Image</label>
+        <input type="file" asp-for="ImageFile" />
+        @Html.ValidationMessageFor(model => model.ImageFile)
+    </div>
+    <div>
         <label for="imageText">Enter text:</label>
         <input type="text" id="imageText" name="Text" value="@Model.Text" />
         @Html.ValidationMessageFor(model => model.Text)

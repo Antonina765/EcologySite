@@ -45,15 +45,8 @@ public class EcologyController : Controller
 
     public IActionResult Index()
     {
-        // Получаем ссылки на перенесенные посты
-        var movedPostReferences = _webDbContext.MovedPostReferences.ToList();
-        var movedPosts = movedPostReferences 
-            .Select(reference =>
-            {
-                var post = _ecologyRepository.FindById(reference.PostId);
-                return post;
-            })
-            .Where(post => post != null) 
+        var mainPagePosts = _ecologyRepository.GetAllWithUsersAndComments() 
+            .Where(p => p.ForMainPage == 1) 
             .Select(post => new EcologyViewModel 
             { 
                 PostId = post.Id, 
@@ -62,14 +55,29 @@ public class EcologyController : Controller
                 UserName = post.User?.Login ?? "Unknown", 
                 CanDelete = false, // Перенесенные посты не могут быть удалены
                 CanMove = false // Перенесенные посты не могут быть снова перенесены
-            }).ToList();
+            }) 
+            .ToList(); 
         
         var viewModel = new MovedPostsViewModel
         {
-            Posts = movedPosts
+            Posts = mainPagePosts
         };
         
         return View(viewModel);
+    }
+    
+    [HttpPost]
+    public IActionResult SetForMainPage(int postId)
+    {
+        var post = _ecologyRepository.Get(postId);
+
+        if (post != null)
+        {
+            post.ForMainPage = 1;
+            _ecologyRepository.PostsForMainPage(post);
+        }
+
+        return RedirectToAction("Index");
     }
 
     [HttpGet]
@@ -101,25 +109,11 @@ public class EcologyController : Controller
             .ToList();
         return View(viewModel);
     }
-
-    [HttpPost]
-    public IActionResult MovePost(int postId)
-    {
-        var post = _ecologyRepository.FindById(postId);
-        if (post != null)
-        {
-            var movedPostReference = new MovedPostReference
-            {
-                PostId = post.Id
-            }; 
-            _ecologyRepository.AddPostToMovedPosts(movedPostReference);
-        } 
-        return RedirectToAction("Index");
-    }
     
     [HttpGet]
     public IActionResult EcologyChat()
     {
+        var ecologyFromDb = _ecologyRepository.GetAllWithUsersAndComments();
         var currentUserId = _authService.GetUserId();
         var isAdmin = User.Claims.Any(c => c.Type == ClaimTypes.Role && c.Value == "Admin"); 
         if (currentUserId is null)
@@ -128,10 +122,6 @@ public class EcologyController : Controller
         }
 
         var user = _userRepositryReal.Get(currentUserId.Value);
-        /*if (user.Coins < 150)
-        {
-            return RedirectToAction("Index");
-        }*/
         
         /*if (User.Identity.IsAuthenticated)
         {
@@ -146,7 +136,6 @@ public class EcologyController : Controller
                 typeUser = "User";
             } 
         }*/
-        var ecologyFromDb = _ecologyRepository.GetAllWithUsersAndComments();
 
         var ecologyViewModels = ecologyFromDb
             .Select(dbEcology =>
@@ -157,18 +146,18 @@ public class EcologyController : Controller
                     Texts = dbEcology.Text,
                     UserName = dbEcology.User?.Login ?? "Unknown",
                     //Text = dbEcology.Comments?.CommentText ?? "Without comments",
-                    //CanDelete = typeUser == "Admin" || dbEcology.User?.Id == currentUserId
-                    CanDelete = dbEcology.User?.Id == currentUserId,
-                    CanMove = isAdmin
+                    CanDelete = dbEcology.User?.Id == currentUserId || isAdmin,
+                    CanMove = isAdmin,
+                    PostsForMainPage = dbEcology.ForMainPage == 1
                 }
             )
             .ToList();
 
         return View(ecologyViewModels);
     }
-
+    
     [HttpPost]
-    public IActionResult EcologyChat(PostCreationViewModel viewModel)
+    public IActionResult EcologyChat(PostCreationViewModel viewModel, IFormFile imageFile)
     {
         if (CalcCountWorldRepeat.IsEclogyTextHas(viewModel.Text)>=4)
         {
@@ -182,6 +171,22 @@ public class EcologyController : Controller
             return View("EcologyChat");
         }
         var currentUserId = _authService.GetUserId();
+        
+        string imageUrl = viewModel.Url;
+        if (imageFile != null && imageFile.Length > 0)
+        {
+            var webRootPath = _webHostEnvironment.WebRootPath; 
+            var fileName = Path.GetFileNameWithoutExtension(imageFile.FileName); 
+            var extension = Path.GetExtension(imageFile.FileName); 
+            var newFileName = $"{fileName}-{currentUserId}{extension}";
+            var path = Path.Combine(webRootPath, "images", "uploads", newFileName);
+            
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                imageFile.CopyTo(fileStream);
+            } 
+            imageUrl = $"/images/ecologyPosts/{newFileName}";
+        }
         
         var ecology = new EcologyData
         {
@@ -202,9 +207,19 @@ public class EcologyController : Controller
     }
 
     [HttpPost]
-    public IActionResult Remove(int id)
+    public IActionResult Remove(int postId)
     {
-        _ecologyRepository.Delete(id);
+        var ecology = _ecologyRepository.Get(postId);
+        if (ecology != null)
+        {
+            // Удаление изображения с диска
+            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, ecology.ImageSrc.TrimStart('/'));
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            } 
+            _ecologyRepository.Delete(ecology);
+        } 
         return RedirectToAction("EcologyChat");
     }
     
@@ -289,6 +304,6 @@ public class EcologyController : Controller
         var avatarUrl = $"/images/avatars/{avatarFileName}";
         _userRepositryReal.UpdateAvatarUrl(userId, avatarUrl);
 
-        return RedirectToAction("Profile");
+        return RedirectToAction("EcologyProfile");
     }
 }

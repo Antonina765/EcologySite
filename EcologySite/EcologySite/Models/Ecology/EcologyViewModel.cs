@@ -15,4 +15,6 @@ public class EcologyViewModel
     public bool CanDelete { get; set; }
     
     public bool CanMove { get; set; }
+    
+    public bool PostsForMainPage { get; set; }
 }

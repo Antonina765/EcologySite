@@ -10,9 +10,8 @@ public interface IEcologyRepositoryReal : IEcologyRepository<EcologyData>
     void Create(EcologyData ecology, int currentUserId, int postId);
     IEnumerable<EcologyData>GetAllWithUsersAndComments();
     
-    EcologyData FindById(int postId);
-    void AddPostToMovedPosts(MovedPostReference movedPost);
-
+    void PostsForMainPage(EcologyData ecology);
+    
 }
 
 public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepositoryReal
@@ -30,20 +29,10 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
                 
         _webDbContext.SaveChanges();
     }
-
-    public EcologyData FindById(int postId)
+    
+    public void PostsForMainPage(EcologyData ecology)
     {
-        return _webDbContext.Ecologies.Find(postId);
-    }
-
-    public void AddPostToMovedPosts(MovedPostReference movedPost)
-    {
-        var movedPostReference = new MovedPostReference
-        {
-            PostId = movedPost.Id
-        };
-
-        _webDbContext.MovedPostReferences.Add(movedPostReference);
+        _dbSet.Update(ecology); 
         _webDbContext.SaveChanges();
     }
     

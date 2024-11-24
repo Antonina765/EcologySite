@@ -5,6 +5,23 @@
     Layout = "~/Views/Shared/_LayoutProfile.cshtml";
 }
 
+<div class="profile">
+    <div>
+        <h1>@Model.UserName</h1>
+    </div>
+
+    <div>
+        Avatar:
+        <img class="avatar" src="@Model.AvatarUrl" />
+    </div>
+    <div>
+        <form action="/AnimeGirl/UpdateAvatar" method="post" enctype="multipart/form-data">
+            <input type="file" name="avatar" />
+            <button type="submit">Обновить аватар</button>
+        </form>
+    </div>
+</div>
+
 <h3>Your Posts</h3>
 @if (Model.Posts != null && Model.Posts.Count > 0)
 {
