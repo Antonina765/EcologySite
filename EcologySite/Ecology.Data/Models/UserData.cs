@@ -12,6 +12,8 @@ public class UserData : BaseModel, IUser
     //public decimal Coins { get; set; }
     public string AvatarUrl { get; set; }
     
+    public Language Language {  get; set; }
+    
     public Role Role {  get; set; }
     
     public IEnumerable<EcologyData>? Ecologies { get; set; }

@@ -1,4 +1,7 @@
-﻿@using EcologySite.Services
+﻿@using EcologySite.Localizations
+@using EcologySite.Services
+@using Enums.Users
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @inject AuthService authService
 
 <!DOCTYPE html>
@@ -27,28 +30,33 @@
                         Hello, @authService.GetName()
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Home.Home_HomePage</a>
                     </li>
                     @if (!User.Identity?.IsAuthenticated ?? false)
                     {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Registration</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">@Home.Home_Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">@Home.Home_Registration</a>
+                        </li>
                     }
                     else
                     {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Exit</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">@Home.Home_Logout</a>
+                        </li>
                     }
                     @if (authService.IsAdmin())
                     {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Users">@Home.Home_Users</a>
+                        </li>
+                    }
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <a class="nav-link text-dark" href="/Home/UpdateLocale?language=@Language.Ru">Ру</a>
+                        <a class="nav-link text-dark" href="/Home/UpdateLocale?language=@Language.En">En</a>
                     }
                 </ul>
             </div>

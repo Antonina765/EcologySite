@@ -1,9 +1,11 @@
-﻿@using EcologySite.Models.Home
+﻿@using EcologySite.Localizations
+@using EcologySite.Models.Home
 @model IndexViewModel
 
 
 <div class="text-center">
     <div>Welcome @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
+    <div>@Home.Home_Greatings @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
     <div>
         If you are interested in ecology click <a href="/Ecology/Index">here</a>
     </div>

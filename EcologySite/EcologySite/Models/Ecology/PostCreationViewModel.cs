@@ -7,6 +7,10 @@ namespace EcologySite.Models.Ecology;
 public class PostCreationViewModel
 {
     [IsUrl(ErrorMessage = "This URL is invalid")]
+    /*[IsUrl(
+        ErrorMessageResourceType = typeof(Girl), 
+        ErrorMessageResourceName = nameof(Girl.ValidationMessage_IsNotUrl))]*/
+
     public string Url { get; set; }
 
     [Required(ErrorMessage = "Text is required.")]

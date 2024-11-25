@@ -1,5 +1,6 @@
 using Enums.Users;
 using System.Data;
+using EcologySite.Localizations;
 
 namespace EcologySite.Services;
 public class AuthService
@@ -23,7 +24,8 @@ public class AuthService
 
     public string? GetName()
     {
-        return GetClaimValue(CLAIM_TYPE_NAME) ?? "Гость";
+        //return GetClaimValue(CLAIM_TYPE_NAME) ?? "Гость";
+        return GetClaimValue(CLAIM_TYPE_NAME) ?? Home.Home_Guest;
     }
 
     public int? GetUserId()

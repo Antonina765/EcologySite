@@ -14,6 +14,7 @@ using Ecology.Data.Models.Ecology;
 using EcologySite.Controllers.AuthAttributes;
 using EcologySite.Models;
 using EcologySite.Services;
+using Enums.Users;
 using Everything.Data.DataLayerModels;
 
 
@@ -27,6 +28,7 @@ public class EcologyController : Controller
     private ICommentRepositoryReal _commentRepositoryReal;
     private AuthService _authService;
     private IWebHostEnvironment _webHostEnvironment;
+    
 
     public EcologyController(IEcologyRepositoryReal ecologyRepository, 
         ICommentRepositoryReal commentRepositoryReal,
@@ -284,6 +286,15 @@ public class EcologyController : Controller
     public IActionResult Forbidden()
     {
         return View();
+    }
+    
+    [IsAuthenticated]
+    public IActionResult UpdateLocale(Language language)
+    {
+        var userId = _authService.GetUserId()!.Value;
+        _userRepositryReal.UpdateLocal(userId, language);
+
+        return RedirectToAction("Index");
     }
     
     [IsAuthenticated]

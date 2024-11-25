@@ -11,6 +11,7 @@ public interface IUserRepositryReal : IUserRepositry<UserData>
     UserData? Login(string login, string password);
     void Register(string login, string password, Role role = Role.User);
     void UpdateAvatarUrl(int userId, string avatarUrl);
+    void UpdateLocal(int userId, Language language);
     void UpdateRole(int userId, Role role);
 }
 
@@ -64,7 +65,8 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
             //Age = age,
             //Coins = 100,
             AvatarUrl = "/images/avatar/default.png",
-            Role = role
+            Role = role,
+            Language = Language.Ru
         };
 
         _dbSet.Add(user);
@@ -82,6 +84,15 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
     {
         var user = _dbSet.First(x => x.Id == userId);
         user.Role = role;
+        _webDbContext.SaveChanges();
+    }
+    
+    public void UpdateLocal(int userId, Language language)
+    {
+        var user = _dbSet.First(x => x.Id == userId);
+
+        user.Language = language;
+
         _webDbContext.SaveChanges();
     }
 

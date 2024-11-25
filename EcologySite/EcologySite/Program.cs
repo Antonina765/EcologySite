@@ -1,6 +1,7 @@
 using Ecology.Data;
 using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Repositories;
+using EcologySite.CustomMiddlewares;
 using EcologySite.Services;
 using Everything.Data;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +56,10 @@ app.UseRouting();
 
 app.UseAuthentication(); // Who Am I?
 app.UseAuthorization(); // May I?
+
+
+app.UseMiddleware<CustomLocalizationMiddleware>();
+
 
 app.MapControllerRoute(
     name: "default",
