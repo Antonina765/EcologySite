@@ -30,6 +30,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\images\avatars\" />
+      <Folder Include="wwwroot\images\Ecology\ecologyPosts\" />
     </ItemGroup>
 
     <ItemGroup>

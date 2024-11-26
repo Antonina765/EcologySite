@@ -8,10 +8,10 @@ namespace EcologySite.Models.Ecology;
 [ImageUploadOrUrlRequired]
 public class PostCreationViewModel
 {
-    [IsUrl(
+    /*[IsUrl(
         ErrorMessageResourceType = typeof(Localizations.Ecology),
-        ErrorMessageResourceName = nameof(Ecology.ValidationMessage_IsInvalidUrl))]
-    //[IsUrl(ErrorMessage = "This URL is invalid")]
+        ErrorMessageResourceName = nameof(Ecology.ValidationMessage_IsInvalidUrl))]*/
+    [IsUrl(ErrorMessage = "This URL is invalid")]
     public string Url { get; set; }
 
     [Required(ErrorMessage = "Text is required.")]

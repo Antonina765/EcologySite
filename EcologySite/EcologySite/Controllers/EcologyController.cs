@@ -170,7 +170,7 @@ public class EcologyController : Controller
 
         var currentUserId = _authService.GetUserId();
         
-        string imageUrl = null;
+        string imageUrl = null; //изначально null для того, чтобы затем получить либо URL, либо путь к загруженному изображению с компьютера. Для того, чтобы  использовать одно из значений в объекте EcologyData
         
         if (imageFile != null && imageFile.Length > 0)
         {
@@ -184,7 +184,7 @@ public class EcologyController : Controller
             {
                 imageFile.CopyTo(fileStream);
             }
-            imageUrl = $"/images/uploads/{newFileName}";
+            imageUrl = $"/images/Ecology/ecologyPosts/{newFileName}";
         }
         else if (!string.IsNullOrEmpty(viewModel.Url))
         {
