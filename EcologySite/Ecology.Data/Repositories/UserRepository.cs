@@ -66,7 +66,7 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
             //Coins = 100,
             AvatarUrl = "/images/avatar/default.png",
             Role = role,
-            Language = Language.Ru
+            Language = Language.En
         };
 
         _dbSet.Add(user);

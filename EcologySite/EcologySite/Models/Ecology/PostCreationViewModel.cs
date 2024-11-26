@@ -1,16 +1,17 @@
 using System.ComponentModel.DataAnnotations;
+using EcologySite.Localizations;
 using EcologySite.Models.CustomValidationAttrubites;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EcologySite.Models.Ecology;
 
+[ImageUploadOrUrlRequired]
 public class PostCreationViewModel
 {
-    [IsUrl(ErrorMessage = "This URL is invalid")]
-    /*[IsUrl(
-        ErrorMessageResourceType = typeof(Girl), 
-        ErrorMessageResourceName = nameof(Girl.ValidationMessage_IsNotUrl))]*/
-
+    [IsUrl(
+        ErrorMessageResourceType = typeof(Localizations.Ecology),
+        ErrorMessageResourceName = nameof(Ecology.ValidationMessage_IsInvalidUrl))]
+    //[IsUrl(ErrorMessage = "This URL is invalid")]
     public string Url { get; set; }
 
     [Required(ErrorMessage = "Text is required.")]
@@ -23,19 +24,4 @@ public class PostCreationViewModel
     [MaxFileSize(52428800)]
     [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png).")]
     public IFormFile ImageFile { get; set; }
-    
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        if (string.IsNullOrEmpty(Url) && ImageFile == null)
-        {
-            yield return new ValidationResult("Please provide either an image URL or upload an image.",
-                new[] { nameof(Url), nameof(ImageFile) });
-        }
-
-        if (!string.IsNullOrEmpty(Url) && ImageFile != null)
-        {
-            yield return new ValidationResult("Please provide either an image URL or upload an image, not both.",
-                new[] { nameof(Url), nameof(ImageFile) });
-        }
-    }
 }
