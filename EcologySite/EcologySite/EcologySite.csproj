@@ -46,4 +46,30 @@
       <_ContentIncludedByDefault Remove="wwwroot\images\Ecology\Ecology\renewable.JPG" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Compile Update="Localizations\Home.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Home.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Localizations\Ecology.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Ecology.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+        <EmbeddedResource Update="Localizations\Home.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Home.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Localizations\Ecology.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Ecology.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
 </Project>

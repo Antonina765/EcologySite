@@ -2,19 +2,23 @@ using System.ComponentModel.DataAnnotations;
 using EcologySite.Localizations;
 using EcologySite.Models.CustomValidationAttrubites;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static EcologySite.Localizations.Ecology;
 
 namespace EcologySite.Models.Ecology;
 
 [ImageUploadOrUrlRequired]
 public class PostCreationViewModel
 {
-    /*[IsUrl(
-        ErrorMessageResourceType = typeof(Localizations.Ecology),
-        ErrorMessageResourceName = nameof(Ecology.ValidationMessage_IsInvalidUrl))]*/
-    [IsUrl(ErrorMessage = "This URL is invalid")]
+   [IsUrl(
+       ErrorMessageResourceType = typeof(Localizations.Ecology), 
+       ErrorMessageResourceName = "ValidationMessage_IsInvalidUrl")]
+    //[IsUrl(ErrorMessage = "This URL is invalid")]
     public string Url { get; set; }
 
-    [Required(ErrorMessage = "Text is required.")]
+    [Required(
+        ErrorMessageResourceType = typeof(Localizations.Ecology), 
+        ErrorMessageResourceName = "ValidationMessage_RequiredText")]
+    //[Required(ErrorMessage = "Text is required.")]
     [EcologyText, IsCorrectLength(15)] 
     public string Text { get; set;}
     
@@ -22,6 +26,9 @@ public class PostCreationViewModel
     public List<SelectListItem>? Posts { get; set; }
 
     [MaxFileSize(52428800)]
-    [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png).")]
+    [FileExtensions(Extensions = "jpg,jpeg,png", 
+        ErrorMessageResourceType = typeof(Localizations.Ecology), 
+        ErrorMessageResourceName = "ValidationMessage_UploadFile")]
+    //[FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png).")]
     public IFormFile ImageFile { get; set; }
 }

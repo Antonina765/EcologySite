@@ -12,6 +12,12 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="ValidationMessage_IsInvalidUrl" xml:space="preserve">
-        <value>This URL is invalid</value>
+        <value>Не правильный урл</value>
+    </data>
+    <data name="ValidationMessage_RequiredText" xml:space="preserve">
+        <value>Требуется текст</value>
+    </data>
+    <data name="ValidationMessage_UploadFile" xml:space="preserve">
+        <value>Пожалуйста загрузите изображение в формате (jpg, jpeg, png)</value>
     </data>
 </root>
