@@ -7,7 +7,7 @@ namespace EcologySite.Services
         private AuthService _authService;
         private IUserRepositryReal _userRepositryReal;
 
-        public const string DEFAULT_AVATAR = "/images/AnimeGirl/avatar-default.webp";
+        public const string DEFAULT_AVATAR = "/images/Ecology/defaltavatar.JPG";
 
         public UserService(AuthService authService, IUserRepositryReal userRepositryReal)
         {
