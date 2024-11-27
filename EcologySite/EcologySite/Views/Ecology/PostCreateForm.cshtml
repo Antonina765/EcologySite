@@ -4,18 +4,24 @@
     <div>
         <label for="imageUrl">Enter image URL:</label>
         <input type="text" id="imageUrl" name="Url" value="@Model.Url" />
-        @Html.ValidationMessageFor(model => model.Url)
+        @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
     </div>
     <div>
         <label asp-for="ImageFile">Upload Image</label>
         <input type="file" asp-for="ImageFile" />
-        @Html.ValidationMessageFor(model => model.ImageFile)
+        @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
     </div>
     @if (ViewData.ModelState["Url"]?.Errors.Count > 0 || ViewData.ModelState["ImageFile"]?.Errors.Count > 0)
     {
-    <div class="text-danger">
-        <span>Please provide either an image URL or upload an image, not both.</span>
-    </div>
+        <div class="text-danger">
+            <span>Please provide either an image URL or upload an image, not both.</span>
+        </div>
+    }
+    @if (ViewData.ModelState[""].Errors.Count > 0)
+    {
+        <div class="text-danger">
+            <span>Please provide either an image URL or upload an image.</span>
+        </div>
     }
     <div>
         <label for="imageText">Enter text:</label>
@@ -24,3 +30,5 @@
     </div>
     <button type="submit">Submit</button>
 </form>
+
+<!--form asp-action="EcologyChat" method="post" enctype="multipart/form-data"> -->

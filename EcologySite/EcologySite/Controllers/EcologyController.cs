@@ -190,6 +190,11 @@ public class EcologyController : Controller
         {
             imageUrl = viewModel.Url;
         }
+        else
+        {
+            ModelState.AddModelError("", "Please provide either an image URL or upload an image."); 
+            return View("EcologyChat");
+        }
 
         var ecology = new EcologyData
         {
