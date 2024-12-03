@@ -5,21 +5,21 @@
     Layout = "~/Views/Shared/_LayoutEcology.cshtml";
 }
 
-<link rel="stylesheet" type="text/css" href="~/css/Ecology/style.css">
-<link rel="stylesheet" type="text/css" href="~/js/script.css">
+
 
 <div class="add-post">
     <!-- Кнопка для открытия модального окна --> 
-    <button id="openModalBtn" class="open-modal-btn">Add Post</button> 
+    <button id="openFormBtn" class="open-modal-btn">Add Post</button> 
     <!-- Модальное окно -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
+            <span class="close">&times;</span>
             @await Html.PartialAsync("PostCreateForm", new EcologySite.Models.Ecology.PostCreationViewModel())
         </div>
-        <script src="script.js"></script>
     </div>
 </div>
+
+<script src="~/js/Ecology/PostCreationForm.js"></script>
 
 @if (Model != null && Model.Count > 0)
 {
@@ -82,12 +82,3 @@
         <button type="submit">Save changes</button>
     </form>
 </div>
-
-<script>
-    function showEditForm(id, url, text) {
-        document.getElementById("editId").value = id;
-        document.getElementById("editImageUrl").value = url;
-        document.getElementById("editImageText").value = text;
-        document.getElementById("editForm").style.display = "block";
-    }
-</script>

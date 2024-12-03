@@ -1,5 +1,4 @@
-@using EcologySite.Models.Ecology
-@model EcologyProfileViewModel
+@model EcologySite.Models.Ecology.EcologyProfileViewModel
 
 @{
     Layout = "~/Views/Shared/_LayoutProfile.cshtml";
@@ -50,7 +49,7 @@ else
         {
             <li>
                 <div class="comment">
-                    <p class="post-text">@comment.PostText</p>
+                    @*<p class="post-text">@comment.PostText</p>*@
                     <p>@comment.CommentText</p>
                 </div>
             </li>

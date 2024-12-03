@@ -19,24 +19,24 @@
         <ul class="navbar-nav flex-grow-1">
             @if (!User.Identity?.IsAuthenticated ?? false)
             {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Registration</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Registration</a>
+                </li>
             }
             else
             {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Exit</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Exit</a>
+                </li>
             }
             @if (authService.IsAdmin())
             {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
+                </li>
             }
         </ul>
     </div>

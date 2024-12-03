@@ -1,5 +1,9 @@
 @model EcologySite.Models.Ecology.PostCreationViewModel
 
+@section Scripts {
+<script src="~/js/Ecology/PostCreationForm.js"></script>
+}
+
 <form method="post" action="/Ecology/EcologyChat" onsubmit="closeModal()">
     <div>
         <label for="imageUrl">Enter image URL:</label>
@@ -30,5 +34,3 @@
     </div>
     <button type="submit">Submit</button>
 </form>
-
-<!--form asp-action="EcologyChat" method="post" enctype="multipart/form-data"> -->

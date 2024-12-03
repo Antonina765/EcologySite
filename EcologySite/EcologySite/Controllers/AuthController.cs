@@ -57,7 +57,7 @@ public class AuthController : Controller
             .SignInAsync(principal)
             .Wait();
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("EcologyProfile", "Ecology");
     }
 
     [HttpGet]
@@ -75,6 +75,17 @@ public class AuthController : Controller
 
         return RedirectToAction("Login");
     }
+    
+    [HttpPost] 
+    public IActionResult RegisterFromProfile(RegisterUserViewModel viewModel) 
+    { 
+        if (ModelState.IsValid) 
+        { 
+            ModelState.AddModelError("", "Registration failed. Please try again."); 
+        } 
+        // Assuming you redirect back to the profile page if there's an error.
+        return RedirectToAction("EcologyProfile", "Ecology"); 
+    }
 
     public IActionResult Logout()
     {
@@ -82,6 +93,6 @@ public class AuthController : Controller
             .SignOutAsync()
             .Wait();
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("EcologyProfile", "Ecology");
     }
 }

@@ -74,38 +74,46 @@ public class EcologyController : Controller
         _ecologyRepository.SetForMainPage(postId);
         return RedirectToAction("Index");
     }
-
+    
     [HttpGet]
     public IActionResult EcologyProfile()
     {
         var viewModel = new EcologyProfileViewModel();
         var userId = _authService.GetUserId();
         
-        if (userId is null)
-        {
-            throw new Exception("User is not authenticated");
-        }
         
-        viewModel.AvatarUrl = _userRepositryReal.GetAvatarUrl(userId!.Value);
+        if (userId != null)
+        {
+            viewModel.UserName = _authService.GetName(); 
+            viewModel.AvatarUrl = _userRepositryReal.GetAvatarUrl(userId!.Value);
 
-        var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
-        
-        info.Comments.Select(dbComment => new CommentForProfileViewModel()
-        {
-            CommentId = dbComment.Id,
-            CommentText = dbComment.CommentText
-        });
-        
-        viewModel.Posts = info
-            .Posts
-            .Select(dbPost => new EcologyForProfileViewModel
+            var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
+
+            viewModel.Posts = info
+                .Posts
+                .Select(dbPost => new EcologyForProfileViewModel
+                {
+                    ImageSrc = dbPost.ImageSrc,
+                    Texts = dbPost.Text,
+                })
+                .ToList();
+
+            viewModel.Comments.Select(dbComment => new CommentForProfileViewModel()
             {
-                ImageSrc = dbPost.ImageSrc,
-                Texts = dbPost.Text,
-            })
-            .ToList();
+                CommentId = dbComment.CommentId,
+                CommentText = dbComment.CommentText,
+            }).ToList();
+        }
+        else
+        {
+            viewModel.UserName = "Guest";
+            viewModel.AvatarUrl = "~/images/Ecology/defaltavatar.JPG";
+            viewModel.Posts = new List<EcologyForProfileViewModel>();
+            viewModel.Comments = new List<CommentForProfileViewModel>();
+        }
+        ViewBag.UserName = viewModel.UserName; 
         
-        return View(viewModel);
+        return View("EcologyProfile", viewModel);
     }
     
     [HttpGet]
