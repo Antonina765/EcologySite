@@ -21,6 +21,6 @@ public class Seed
             return;
         }
 
-        userRepositry.Register("admin", "admin", Role.Admin);
+        userRepositry.Register("admin", "admin", avatarUrl:"defalt", Role.Admin);
     } 
 }

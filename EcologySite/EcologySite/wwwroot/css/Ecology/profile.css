@@ -25,6 +25,11 @@ header .logo img {
     width: 70px;
 }
 
+header .reg-auth {
+    display: flex;
+    gap: 10px;
+} {}
+
 .return-home{
     background-image: url(../../images/Ecology/home.jpg);
     background-size: cover;

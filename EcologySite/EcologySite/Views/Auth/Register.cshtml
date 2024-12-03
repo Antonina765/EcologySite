@@ -1,6 +1,11 @@
 @using EcologySite.Models.Auth
 @model RegisterUserViewModel
 
+@{
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+    ViewBag.PageTitle = "Registration";
+}
+
 <form method="post">
     <div>
         @Html.TextBoxFor(x => x.UserName, new { placeholder = "login" })
@@ -9,6 +14,13 @@
         @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "password" })
     </div>
     <div>
+        <label for="AvatarImage">Upload Avatar</label>
+        @Html.TextBoxFor(x => x.AvatarImage, new { type = "file" })
+    </div>
+    <div>
         <button type="submit">Registration</button>
     </div>
+    <ul>
+        <li><a class="exit-button" href="/"></a></li>
+    </ul>
 </form>

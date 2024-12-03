@@ -10,10 +10,12 @@ namespace EcologySite.Controllers;
 public class AuthController : Controller
 { 
     public IUserRepositryReal _userRepositryReal;
+    private IWebHostEnvironment _webHostEnvironment;
 
-    public AuthController(IUserRepositryReal userRepositryReal)
+    public AuthController(IUserRepositryReal userRepositryReal, IWebHostEnvironment webHostEnvironment)
     {
         _userRepositryReal = userRepositryReal;
+        _webHostEnvironment = webHostEnvironment;
     }
 
     [HttpGet]
@@ -65,16 +67,37 @@ public class AuthController : Controller
     {
         return View();
     }
-
+    
     [HttpPost]
     public IActionResult Register(RegisterUserViewModel viewModel)
     {
-        _userRepositryReal.Register(
-            viewModel.UserName,
-            viewModel.Password);
+        if (ModelState.IsValid)
+        {
+            string avatarUrl = null;
 
-        return RedirectToAction("Login");
+            if (viewModel.AvatarImage != null && viewModel.AvatarImage.Length > 0)
+            {
+                var webRootPath = _webHostEnvironment.WebRootPath;
+                var fileName = Path.GetFileNameWithoutExtension(viewModel.AvatarImage.FileName);
+                var extension = Path.GetExtension(viewModel.AvatarImage.FileName);
+                var newFileName = $"{fileName}-{Guid.NewGuid()}{extension}";
+                var path = Path.Combine(webRootPath, "images", "avatars", newFileName);
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    viewModel.AvatarImage.CopyTo(fileStream);
+                }
+                avatarUrl = $"/images/avatars/{newFileName}";
+            }
+
+            _userRepositryReal.Register(viewModel.UserName, viewModel.Password, avatarUrl);
+
+            return RedirectToAction("Login");
+        }
+
+        return View(viewModel);
     }
+
     
     [HttpPost] 
     public IActionResult RegisterFromProfile(RegisterUserViewModel viewModel) 
