@@ -80,15 +80,19 @@ public class EcologyController : Controller
     {
         var viewModel = new EcologyProfileViewModel();
         var userId = _authService.GetUserId();
-        
-        
+
         if (userId != null)
         {
-            viewModel.UserName = _authService.GetName(); 
             viewModel.AvatarUrl = _userRepositryReal.GetAvatarUrl(userId!.Value);
 
             var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
-
+        
+            info.Comments.Select(dbComment => new CommentForProfileViewModel()
+            {
+                CommentId = dbComment.Id,
+                CommentText = dbComment.CommentText
+            });
+        
             viewModel.Posts = info
                 .Posts
                 .Select(dbPost => new EcologyForProfileViewModel
@@ -97,23 +101,16 @@ public class EcologyController : Controller
                     Texts = dbPost.Text,
                 })
                 .ToList();
-
-            viewModel.Comments.Select(dbComment => new CommentForProfileViewModel()
-            {
-                CommentId = dbComment.CommentId,
-                CommentText = dbComment.CommentText,
-            }).ToList();
         }
-        else
+        else 
         {
             viewModel.UserName = "Guest";
             viewModel.AvatarUrl = "~/images/Ecology/defaltavatar.JPG";
             viewModel.Posts = new List<EcologyForProfileViewModel>();
             viewModel.Comments = new List<CommentViewModel>();
         }
-        ViewBag.UserName = viewModel.UserName; 
         
-        return View("EcologyProfile", viewModel);
+        return View(viewModel);
     }
     
     [HttpGet]
