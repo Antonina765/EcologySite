@@ -109,7 +109,7 @@ public class EcologyController : Controller
             viewModel.UserName = "Guest";
             viewModel.AvatarUrl = "~/images/Ecology/defaltavatar.JPG";
             viewModel.Posts = new List<EcologyForProfileViewModel>();
-            viewModel.Comments = new List<CommentForProfileViewModel>();
+            viewModel.Comments = new List<CommentViewModel>();
         }
         ViewBag.UserName = viewModel.UserName; 
         
