@@ -21,7 +21,7 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
     {
     }
 
-    public override void Add(UserData data)
+    public override int Add(UserData data)
     {
         throw new NotImplementedException("User method Register to create a new User");
     }

@@ -9,13 +9,15 @@ public class BaseRepository<T> : IBaseRepository<T>
 {
     protected List<T> _entyties = new List<T>();
     
-    public void Add(T data)
+    public int Add(T data)
     {
         data.Id = _entyties.Any()
             ? _entyties.Max(x => x.Id) + 1
             : 1;
 
         _entyties.Add(data);
+        
+        return data.Id;
     }
     public void Delete(T data)
     {

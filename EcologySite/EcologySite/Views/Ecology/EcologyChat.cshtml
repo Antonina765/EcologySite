@@ -1,33 +1,63 @@
 @using EcologySite.Models.Ecology
-@model List<EcologyViewModel>
+@model PostViewModel
 
 @{
     Layout = "~/Views/Shared/_LayoutEcology.cshtml";
 }
 
+@section Scripts {
+    <script src="~/js/Ecology/PostCreationForm.js"></script>
+    <link href="~/css/Ecology/postCreation.css" rel="stylesheet" />
+}
+
 <div class="add-post">
-    <!-- Кнопка для открытия модального окна --> 
-    <button id="openFormBtn" class="open-modal-btn">Add Post</button> 
-    <!-- Модальное окно -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            @await Html.PartialAsync("PostCreateForm", new EcologySite.Models.Ecology.PostCreationViewModel())
-        </div>
+    <!-- Кнопка для открытия/закрытия формы -->
+    <button id="toggleFormBtn" class="open-modal-btn">Add Post</button>
+    <!-- Форма для создания постов -->
+    <div id="postForm" class="post-form" style="display: none;">
+        <form method="post" action="/Ecology/EcologyChat" onsubmit="closeForm()">
+            <div>
+                <label for="imageUrl">Enter image URL:</label>
+                <input type="text" id="imageUrl" name="Url" value="@Model.Posts.FirstOrDefault()?.Url" />
+                @Html.ValidationMessageFor(model => model.Posts.FirstOrDefault().Url, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <label asp-for="Posts.FirstOrDefault().ImageFile">Upload Image</label>
+                <input type="file" asp-for="Posts.FirstOrDefault().ImageFile" />
+                @Html.ValidationMessageFor(model => model.Posts.FirstOrDefault().ImageFile, "", new { @class = "text-danger" })
+            </div>
+            @if (ViewData.ModelState["Url"]?.Errors.Count > 0 || ViewData.ModelState["ImageFile"]?.Errors.Count > 0)
+            {
+            <div class="text-danger">
+                <span>Please provide either an image URL or upload an image, not both.</span>
+            </div>
+            }
+            @if (ViewData.ModelState[""].Errors.Count > 0)
+            {
+            <div class="text-danger">
+                <span>Please provide either an image URL or upload an image.</span>
+            </div>
+            }
+            <div>
+                <label for="imageText">Enter text:</label>
+                <input type="text" id="imageText" name="Text" value="@Model.Posts.FirstOrDefault()?.Text" />
+                @Html.ValidationMessageFor(model => model.Posts.FirstOrDefault().Text)
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </div>
 
-<script src="~/js/Ecology/PostCreationForm.js"></script>
-
-@if (Model != null && Model.Count > 0)
+@if (Model.Ecologies != null && Model.Ecologies.Count > 0)
 {
 <ul>
-    @foreach (var ecology in Model)
+    @foreach (var ecology in Model.Ecologies)
     {
     <li>
         <div class="post-header">
-            <img src="@ecology.UserAvatar" alt="User Icon" class="user-icon" />
-            <span>@ecology.UserName</span>
+            <img src="@ecology.UserAvatar" alt="User Icon" class="user-icon"/> 
+            <span>@ecology.UserName</span> 
+            <button class="edit-btn">•••</button>
         </div>
         <img src="@ecology.ImageSrc" class="post" alt="Picture"/>
         <p>@ecology.Texts.FirstOrDefault()</p>
@@ -41,9 +71,8 @@
                 @if (ecology.CanDelete)
                 {
                     <a class="tag" href="/Ecology/Remove?id=@ecology.PostId">Delete</a>
-                    
                 }
-                </div>
+            </div>
         </div>
         }
 

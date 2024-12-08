@@ -157,10 +157,16 @@ public class EcologyController : Controller
             )
             .ToList();
 
-        return View(ecologyViewModels);
+        var viewModel = new PostViewModel
+        {
+            Ecologies = ecologyViewModels,
+            Posts = new List<PostCreationViewModel>()
+        };
+        
+        return View(viewModel);
     }
     
-    [HttpPost]
+    [HttpPost] //Это и есть создание 
     public IActionResult EcologyChat(PostCreationViewModel viewModel, IFormFile imageFile)
     {
         if (CalcCountWorldRepeat.IsEclogyTextHas(viewModel.Text) >= 4)
@@ -210,30 +216,6 @@ public class EcologyController : Controller
         _ecologyRepository.Create(ecology, currentUserId!.Value, viewModel.PostId);
         //_ecologyRepository.Add(ecology);
 
-        return RedirectToAction("EcologyChat");
-    }
-        
-    [HttpPost]
-    public IActionResult UpdatePost(int id, string url, string text)
-    {
-        _ecologyRepository.UpdatePost(id, url, text);
-        return RedirectToAction("EcologyChat");
-    }
-
-    [HttpPost]
-    public IActionResult Remove(int postId)
-    {
-        var ecology = _ecologyRepository.Get(postId);
-        if (ecology != null)
-        {
-            // Удаление изображения с диска
-            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, ecology.ImageSrc.TrimStart('/'));
-            if (System.IO.File.Exists(imagePath))
-            {
-                System.IO.File.Delete(imagePath);
-            } 
-            _ecologyRepository.Delete(ecology);
-        } 
         return RedirectToAction("EcologyChat");
     }
     

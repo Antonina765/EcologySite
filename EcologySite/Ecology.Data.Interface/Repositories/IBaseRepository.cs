@@ -17,7 +17,7 @@ public interface IBaseQueryRepository<T>
 public interface IBaseCommandRepository<T>
 {
     
-    void Add(T data);
+    int Add(T data);
 
     void Delete(T data);
 

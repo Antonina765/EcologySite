@@ -17,10 +17,12 @@ public abstract class BaseRepository<T> : IBaseRepository<T>
         _dbSet = webDbContext.Set<T>();
     }
 
-    public virtual void Add(T data)
+    public virtual int Add(T data)
     {
         _webDbContext.Add(data);
         _webDbContext.SaveChanges();
+
+        return data.Id;
     }
 
     public virtual bool Any()
