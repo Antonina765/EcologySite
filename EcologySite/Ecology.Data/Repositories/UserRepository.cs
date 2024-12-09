@@ -9,7 +9,10 @@ public interface IUserRepositryReal : IUserRepositry<UserData>
     string GetAvatarUrl(int userId);
     bool IsAdminExist();
     UserData? Login(string login, string password);
-    void Register(string login, string password, string avatarUrl, Role role = Role.User);
+    
+    //void Register(string login, string password, string avatarUrl, Role role = Role.User);
+    
+    void Register(string login, string password, Role role = Role.User);
     void UpdateAvatarUrl(int userId, string avatarUrl);
     void UpdateLocal(int userId, Language language);
     void UpdateRole(int userId, Role role);
@@ -56,7 +59,21 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
         return _dbSet.FirstOrDefault(x => x.Login == login && x.Password == brokenPassword);
     }
 
-    public void Register(string login, string password, string avatarUrl, Role role = Role.User)
+    public void Register(string login, string password, Role role = Role.User)
+    {
+        var user = new UserData
+        {
+            Login = login,
+            Password = BrokePassword(password),
+            AvatarUrl = "/images/AnimeGirl/avatar-default.webp",
+            Role = role,
+            Language = Language.Ru,
+        };
+
+        _dbSet.Add(user);
+        _webDbContext.SaveChanges();
+    }
+   /* public void Register(string login, string password, string avatarUrl, Role role = Role.User)
     {
         var user = new UserData
         {
@@ -71,7 +88,7 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
 
         _dbSet.Add(user);
         _webDbContext.SaveChanges();
-    }
+    }*/
     
     public void UpdateAvatarUrl(int userId, string avatarUrl)
     {

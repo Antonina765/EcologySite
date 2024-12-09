@@ -32,7 +32,7 @@ namespace EcologySite.CustomMiddlewares
                         culture = new CultureInfo("en-US");
                         break;
                     default:
-                        throw new Exception("Unknown languge");
+                        throw new Exception("Unknown language");
                 }
 
                 Thread.CurrentThread.CurrentCulture = culture;

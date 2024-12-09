@@ -71,6 +71,14 @@ public class AuthController : Controller
     [HttpPost]
     public IActionResult Register(RegisterUserViewModel viewModel)
     {
+        _userRepositryReal.Register(
+            viewModel.UserName,
+            viewModel.Password);
+
+        return RedirectToAction("Login");
+    }
+    /*public IActionResult Register(RegisterUserViewModel viewModel)
+    {
         if (ModelState.IsValid)
         {
             string avatarUrl = null;
@@ -96,7 +104,7 @@ public class AuthController : Controller
         }
 
         return View(viewModel);
-    }
+    }*/
 
     
     [HttpPost] 
