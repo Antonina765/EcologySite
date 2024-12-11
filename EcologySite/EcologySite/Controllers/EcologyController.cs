@@ -152,7 +152,9 @@ public class EcologyController : Controller
                     //Text = dbEcology.Comments?.CommentText ?? "Without comments",
                     CanDelete = dbEcology.User?.Id == currentUserId || isAdmin,
                     CanMove = isAdmin,
-                    PostsForMainPage = dbEcology.ForMainPage == 1
+                    PostsForMainPage = dbEcology.ForMainPage == 1,
+                    LikeCount = dbEcology.UsersWhoLikeIt.Count(),                                                                                                     
+                    IsLiked = dbEcology.UsersWhoLikeIt.Any(x => x.UserId == user.Id)
                 }
             )
             .ToList();

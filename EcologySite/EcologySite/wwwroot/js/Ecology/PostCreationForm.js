@@ -5,12 +5,12 @@ $(document).ready(function () {
     let editForm = $("#editForm");
 
     // Когда пользователь нажимает кнопку, открывается/закрывается форма
-    toggleButton.on("click", function() {
+    toggleButton.click(function() {
         formContainer.toggle(1000);
     });
 
     // Когда пользователь нажимает на кнопку отправки формы, форма скрывается
-    formContainer.on("submit", function() {
+    formContainer.submit(function() {
         setTimeout(function() {
             formContainer.hide(1000);
         }, 500);
@@ -24,7 +24,7 @@ $(document).ready(function () {
     });
 
     // Показ формы редактирования 
-    $(".edit-btn").on("click", function() {
+    $(".edit-btn").click( function() {
         let postId = $(this).data("post-id");
         let imageUrl = $(this).closest("li").find(".post").attr("src");
         let text = $(this).closest("li").find("p").text();
@@ -94,6 +94,36 @@ $(document).ready(function () {
             error: function (xhr) {
                 console.error(xhr.responseText);
             }
+        });
+    });
+
+    $(document).ready(function () {
+        // Обработка нажатия на иконку лайка
+        $(".post-header .like-container .icon").click(function () {
+            $(this).toggleClass("like");
+            $(this).toggleClass("like-pushed");
+
+            const postId = $(this).closest("li").attr("data-id");
+            const url = `/api/ApiEcology/Like?ecologyId=${postId}`;
+
+            $.get(url, function(response) {
+                $(this).siblings(".like-count").text(response.newLikeCount);
+            }.bind(this));
+        });
+
+        // Обработка двойного клика на изображение
+        $("img .post").dblclick(function () {
+            const postId = $(this).closest("li").attr("data-id");
+            const url = `/api/ApiEcology/Like?ecologyId=${postId}`;
+
+            // Переключение классов иконки лайка
+            const icon = $(this).closest("li").find(".like-container .icon");
+            icon.toggleClass("like");
+            icon.toggleClass("like-pushed");
+
+            $.get(url, function(response) {
+                icon.siblings(".like-count").text(response.newLikeCount);
+            });
         });
     });
 });

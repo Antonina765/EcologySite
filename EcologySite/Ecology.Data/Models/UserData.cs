@@ -18,4 +18,7 @@ public class UserData : BaseModel, IUser
     
     public IEnumerable<EcologyData>? Ecologies { get; set; }
     public IEnumerable<CommentData>? Comments { get; set; }
+    
+    //public virtual List<EcologyData> PostsWhichUsersLike { get; set; }
+    public ICollection<UserEcologyLikesData> PostsWhichUsersLike { get; set; } = new List<UserEcologyLikesData>();
 }

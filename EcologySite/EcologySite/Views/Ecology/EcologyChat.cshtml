@@ -56,7 +56,12 @@
     <li>
         <div class="post-header">
             <img src="@ecology.UserAvatar" alt="User Icon" class="user-icon"/> 
-            <span>@ecology.UserName</span> 
+            <span>@ecology.UserName</span>
+            <!-- Иконка лайка и количество лайков --> 
+            <div class="like-container">
+                <i class="icon @(ecology.IsLiked ? "like-pushed" : "like")" data-post-id="@ecology.PostId">
+                </i> <span class="like-count">@ecology.LikeCount</span>
+            </div>
             <button class="edit-btn">•••</button>
         </div>
         <img src="@ecology.ImageSrc" class="post" alt="Picture"/>

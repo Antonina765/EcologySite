@@ -1,4 +1,5 @@
 using Ecology.Data.Interface.Repositories;
+using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
 using Everything.Data.DataLayerModels;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ public interface IEcologyRepositoryReal : IEcologyRepository<EcologyData>
     
     void SetForMainPage(Type postId);
     
+    bool LikeEcology(int ecologyId, int userId);
 }
 
 public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepositoryReal
@@ -45,6 +47,7 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
         return _dbSet
             .Include(x => x.User)
             .Include(x => x.Comments)
+            .Include(x => x.UsersWhoLikeIt)
             .ToList();
     }
    
@@ -58,5 +61,35 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
         ecology.Comments = comments;
 
         Add(ecology);
+    }
+    
+    public bool LikeEcology(int ecologyId, int userId)
+    {
+        var ecology = _dbSet
+            .Include(x => x.UsersWhoLikeIt)
+            .First(x => x.Id == ecologyId);
+        var user = _webDbContext.Users.First(x => x.Id == userId);
+
+        var isUserAlreadyLikeTheEcology = ecology
+            .UsersWhoLikeIt
+            .Any(ue => ue.UserId == userId);
+
+        if (isUserAlreadyLikeTheEcology)
+        {
+            var userEcology = ecology.UsersWhoLikeIt.First(ue => ue.UserId == userId);
+            ecology.UsersWhoLikeIt.Remove(userEcology); // Удаляем объект UserEcologyLikesData
+            _webDbContext.SaveChanges();
+            return false;
+        }
+
+        ecology.UsersWhoLikeIt
+            .Add(new UserEcologyLikesData
+            {
+                UserId = userId,
+                EcologyDataId = ecologyId, 
+                User = user
+            });
+        _webDbContext.SaveChanges();
+        return true;
     }
 }

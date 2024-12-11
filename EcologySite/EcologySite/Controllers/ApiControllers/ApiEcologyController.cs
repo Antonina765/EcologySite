@@ -10,6 +10,7 @@ using EcologySite.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcologySite.Controllers.ApiControllers
 {
@@ -118,6 +119,14 @@ namespace EcologySite.Controllers.ApiControllers
 
             // return RedirectToAction("EcologyChat");
             return Ok();
+        }
+        
+        [Authorize]
+        public bool Like(int ecologyId)
+        {
+            var userId = _authService.GetUserId()!.Value;
+
+            return _ecologyRepository.LikeEcology(ecologyId, userId);
         }
     }
 }

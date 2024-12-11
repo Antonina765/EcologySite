@@ -14,4 +14,6 @@ public class EcologyData : BaseModel, IEcologyData
     public int ForMainPage { get; set; } = 0;
     public UserData User { get; set; }
     public IEnumerable<CommentData>? Comments { get; set; }
+    //public virtual List<UserData> UsersWhoLikeIt { get; set; }
+    public ICollection<UserEcologyLikesData> UsersWhoLikeIt { get; set; } = new List<UserEcologyLikesData>();
 }

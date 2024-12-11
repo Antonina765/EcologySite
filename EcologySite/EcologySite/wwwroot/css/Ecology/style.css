@@ -204,3 +204,29 @@ header .logotip img {
     margin: 0 auto;
     padding: 20px;
 }
+
+/* Стили для лайка */
+.like-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.like-container .icon {
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.like-container .like-pushed {
+    color: red; 
+}
+
+.like-container .like {
+    color: grey; 
+}
+
+.like-container .like-count {
+    font-size: 14px;
+    color: #333;
+}
