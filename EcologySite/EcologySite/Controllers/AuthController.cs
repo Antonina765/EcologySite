@@ -6,16 +6,23 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Security.Claims;
 using EcologySite.Models.Auth;
 using EcologySite.Services;
+using Microsoft.AspNetCore.SignalR;
+using EcologySite.Hubs;
+
 namespace EcologySite.Controllers;
 public class AuthController : Controller
 { 
     public IUserRepositryReal _userRepositryReal;
     private IWebHostEnvironment _webHostEnvironment;
+    public IHubContext<ChatHub, IChatHub> _chatHub;
 
-    public AuthController(IUserRepositryReal userRepositryReal, IWebHostEnvironment webHostEnvironment)
+    public AuthController(IUserRepositryReal userRepositryReal, 
+        IWebHostEnvironment webHostEnvironment, 
+        IHubContext<ChatHub, IChatHub> hubContext)
     {
         _userRepositryReal = userRepositryReal;
         _webHostEnvironment = webHostEnvironment;
+        _chatHub = hubContext;
     }
 
     [HttpGet]
@@ -74,6 +81,8 @@ public class AuthController : Controller
         _userRepositryReal.Register(
             viewModel.UserName,
             viewModel.Password);
+
+        _chatHub.Clients.All.NewMessageAdded($"Новый пользователь зарегестировался у нас на сайте. Его зовут {viewModel.UserName}");
 
         return RedirectToAction("Login");
     }

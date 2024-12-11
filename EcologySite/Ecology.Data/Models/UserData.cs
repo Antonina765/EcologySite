@@ -21,4 +21,6 @@ public class UserData : BaseModel, IUser
     
     //public virtual List<EcologyData> PostsWhichUsersLike { get; set; }
     public ICollection<UserEcologyLikesData> PostsWhichUsersLike { get; set; } = new List<UserEcologyLikesData>();
+    
+    public virtual List<ChatMessageData> ChatMessages { get; set;} = new();
 }

@@ -2,7 +2,7 @@ using Ecology.Data.Models.Ecology;
 
 namespace Ecology.Data.Models;
 
-public class UserEcologyLikesData
+public class UserEcologyLikesData : BaseModel
 {
     public int UserId { get; set; }
     public UserData User { get; set; }

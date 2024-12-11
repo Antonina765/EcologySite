@@ -14,6 +14,8 @@ public class WebDbContext : DbContext
     public DbSet<EcologyData> Ecologies { get; set; }
     public DbSet<CommentData> Comments { get; set; }
     
+    public DbSet<ChatMessageData> ChatMessages { get; set; }
+    
     public WebDbContext() { }
 
     public WebDbContext(DbContextOptions<WebDbContext> contextOptions)

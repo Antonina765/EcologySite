@@ -3,10 +3,30 @@
 @model IndexViewModel
 
 
-<div class="text-center">
-    <div>Welcome @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
-    <div>@Home.Home_Greatings @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
-    <div>
-        If you are interested in ecology click <a href="/Ecology/Index">here</a>
+@section Scripts {
+    <script src="~/js/chat.js"></script>
+    <link rel="stylesheet" href="~/css/chat.css" />
+}
+
+@*@section Styles {
+    <link rel="stylesheet" href="~/css/chat.css" />
+}*@
+
+<div class="main-page">
+    <div class="chat-container">
+        <div class="messages">
+            <div class="message template">***</div>
+        </div>
+        <div>
+            <input class="new-message" />
+            <button class="send-new-message" type="button">Отправить</button>
+        </div>
+    </div>
+    <div class="text-center">
+        <div>Welcome @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
+        <div>@Home.Home_Greatings @(string.IsNullOrEmpty(Model.UserName) ? "Гость" : Model.UserName)</div>
+        <div>
+            If you are interested in ecology click <a href="/Ecology/Index">here</a>
+        </div>
     </div>
 </div>

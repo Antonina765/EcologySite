@@ -22,7 +22,7 @@ public class AuthService
         return GetUserId() is not null;
     }
 
-    public string? GetName()
+    public string GetName()
     {
         //return GetClaimValue(CLAIM_TYPE_NAME) ?? "Гость";
         return GetClaimValue(CLAIM_TYPE_NAME) ?? Home.Home_Guest;
