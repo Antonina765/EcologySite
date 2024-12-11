@@ -59,7 +59,7 @@ app.UseAuthorization(); // May I?
 
 
 app.UseMiddleware<CustomLocalizationMiddleware>();
-
+app.UseMiddleware<CustomThemeMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

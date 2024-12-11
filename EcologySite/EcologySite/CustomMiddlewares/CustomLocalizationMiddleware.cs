@@ -13,10 +13,12 @@ namespace EcologySite.CustomMiddlewares
     public class CustomLocalizationMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<CustomLocalizationMiddleware> _logger;
 
-        public CustomLocalizationMiddleware(RequestDelegate next)
+        public CustomLocalizationMiddleware(RequestDelegate next, ILogger<CustomLocalizationMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -27,7 +29,15 @@ namespace EcologySite.CustomMiddlewares
             if (authService.IsAuthenticated())
             {
                 var user = userRepositryReal.Get(authService.GetUserId()!.Value)!;
-                SwitchLanguage(user.Language);
+                try
+                {
+                    SwitchLanguage(user.Language);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error switching language for authenticated user");
+                    // Fallback to default language if needed
+                }
                 await _next.Invoke(context);
                 return;
             }
@@ -35,16 +45,24 @@ namespace EcologySite.CustomMiddlewares
             var langFromCookie = context.Request.Cookies["lang"];
             if (langFromCookie != null)
             {
-                var lang = Enum.Parse<Language>(langFromCookie);
-                SwitchLanguage(lang);
+                try
+                {
+                    var lang = Enum.Parse<Language>(langFromCookie);
+                    SwitchLanguage(lang);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error switching language from cookie");
+                    // Fallback to default language if needed
+                }
                 await _next.Invoke(context);
                 return;
             }
-            
+
             if (context.Request.Headers.ContainsKey("accept-language"))
             {
                 var langFromHeader = context.Request.Headers["accept-language"].FirstOrDefault();
-                if (langFromHeader is not null)
+                if (langFromHeader != null)
                 {
                     var localStrCode = langFromHeader.Substring(0, 5);
                     var culture = new CultureInfo(localStrCode);
@@ -70,7 +88,7 @@ namespace EcologySite.CustomMiddlewares
                     culture = new CultureInfo("en-US");
                     break;
                 default:
-                    throw new Exception("Unknown languge");
+                    throw new Exception("Unknown language");
             }
 
             SwitchLanguage(culture);
