@@ -1,6 +1,6 @@
 ﻿using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
-using Everything.Data.DataLayerModels;
+using Ecology.Data.DataLayerModels;
 using Microsoft.EntityFrameworkCore;
 //using Microsoft.Identity.Client;
 

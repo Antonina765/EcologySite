@@ -15,7 +15,7 @@ using EcologySite.Controllers.AuthAttributes;
 using EcologySite.Models;
 using EcologySite.Services;
 using Enums.Users;
-using Everything.Data.DataLayerModels;
+using Ecology.Data.DataLayerModels;
 
 
 namespace EcologySite.Controllers;
@@ -87,11 +87,14 @@ public class EcologyController : Controller
 
             var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
         
-            info.Comments.Select(dbComment => new CommentForProfileViewModel()
-            {
-                CommentId = dbComment.Id,
-                CommentText = dbComment.CommentText
-            });
+            viewModel.Comments = info
+                .Comments
+                .Select(dbComment => new CommentForProfileViewModel()
+                {
+                    CommentId = dbComment.Id,
+                    CommentText = dbComment.CommentText
+                })
+                .ToList();
         
             viewModel.Posts = info
                 .Posts
@@ -107,7 +110,7 @@ public class EcologyController : Controller
             viewModel.UserName = "Guest";
             viewModel.AvatarUrl = "~/images/Ecology/defaltavatar.JPG";
             viewModel.Posts = new List<EcologyForProfileViewModel>();
-            viewModel.Comments = new List<CommentViewModel>();
+            viewModel.Comments = new List<CommentForProfileViewModel>();
         }
         
         return View(viewModel);

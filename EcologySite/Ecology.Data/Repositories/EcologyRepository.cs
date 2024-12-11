@@ -1,7 +1,7 @@
 using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
-using Everything.Data.DataLayerModels;
+using Ecology.Data.DataLayerModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecology.Data.Repositories;

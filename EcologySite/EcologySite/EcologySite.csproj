@@ -31,7 +31,6 @@
     <ItemGroup>
       <Folder Include="wwwroot\images\avatars\" />
       <Folder Include="wwwroot\images\Ecology\ecologyPosts\" />
-      <Folder Include="wwwroot\js\Ecology\" />
     </ItemGroup>
 
     <ItemGroup>

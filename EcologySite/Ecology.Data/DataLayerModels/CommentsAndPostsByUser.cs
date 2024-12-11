@@ -1,7 +1,7 @@
 ﻿using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
 
-namespace Everything.Data.DataLayerModels
+namespace Ecology.Data.DataLayerModels
 {
     public class CommentsAndPostsByUser
     {
