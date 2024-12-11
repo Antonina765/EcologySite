@@ -65,7 +65,7 @@ public class UserRepository : BaseRepository<UserData>, IUserRepositryReal
         {
             Login = login,
             Password = BrokePassword(password),
-            AvatarUrl = "/images/AnimeGirl/avatar-default.webp",
+            AvatarUrl = "/images/Ecology/defaltavatar.jpg",
             Role = role,
             Language = Language.Ru,
         };
