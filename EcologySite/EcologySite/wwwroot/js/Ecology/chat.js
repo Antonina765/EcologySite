@@ -17,16 +17,20 @@ $(document).ready(function () {
 
     $(".toggle-chat").click(function () {
         $(".chat-container").toggleClass("show hidden");
+        // Добавляем обработчик кликов по документу для закрытия чата 
+        $(document).click (function (e) 
+        { 
+            if (!$(e.target).closest(".chat-container, .toggle-chat").length) 
+            { 
+                $(".chat-container").addClass("hidden").removeClass("show"); 
+            } 
+        });
     });
 
     function sendMessage() {
         const message = $(".new-message").val();
         if (message.trim() !== "") {
             hub.invoke("addNewMessage", message)
-                .then(function () 
-                { 
-                    hub.invoke("userCreatedNewPost"); // Notify when a new post is created
-                })
                 .catch(err => console.error(err));
             $(".new-message").val("");
         }

@@ -12,6 +12,7 @@ namespace Ecology.Data.Repositories
     public class ChatMessageRepositry : BaseRepository<ChatMessageData>, IChatMessageRepositryReal
     {
         public const int COUNT_OF_MESSAGE_TO_CHECK_ON_SPAM = 3;
+        
         public ChatMessageRepositry(WebDbContext webDbContext) : base(webDbContext)
         {
         }
@@ -31,7 +32,7 @@ namespace Ecology.Data.Repositories
 
             var messageData = new ChatMessageData
             {
-                CreationTime = DateTime.Now,
+                CreationTime = DateTime.UtcNow,
                 Message = message,
                 User = !userId.HasValue
                     ? null

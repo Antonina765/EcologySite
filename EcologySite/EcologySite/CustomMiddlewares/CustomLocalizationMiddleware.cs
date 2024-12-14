@@ -62,13 +62,18 @@ namespace EcologySite.CustomMiddlewares
             if (context.Request.Headers.ContainsKey("accept-language"))
             {
                 var langFromHeader = context.Request.Headers["accept-language"].FirstOrDefault();
-                if (langFromHeader != null)
+                if (langFromHeader != null && langFromHeader.Length >= 5)
                 {
                     var localStrCode = langFromHeader.Substring(0, 5);
                     var culture = new CultureInfo(localStrCode);
                     SwitchLanguage(culture);
                     await _next.Invoke(context);
                     return;
+                }
+                else 
+                { 
+                    // Fallback to default language if needed
+                    SwitchLanguage(new CultureInfo("en-US"));
                 }
             }
 

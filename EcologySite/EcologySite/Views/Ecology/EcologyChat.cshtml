@@ -8,7 +8,7 @@
 @section Scripts {
     <script src="~/js/Ecology/PostCreationForm.js"></script>
     <link href="~/css/Ecology/postCreation.css" rel="stylesheet" />
-    <link href="~/css/Ecology/chat.css" rel="stylechat"/>
+    <link href="~/css/Ecology/chat.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.2/signalr.min.js"></script>
     <script src="~/js/Ecology/chat.js"></script>
@@ -30,18 +30,7 @@
                 <input type="file" asp-for="Posts.FirstOrDefault().ImageFile" />
                 @Html.ValidationMessageFor(model => model.Posts.FirstOrDefault().ImageFile, "", new { @class = "text-danger" })
             </div>
-            @if (ViewData.ModelState["Url"]?.Errors.Count > 0 || ViewData.ModelState["ImageFile"]?.Errors.Count > 0)
-            {
-            <div class="text-danger">
-                <span>Please provide either an image URL or upload an image, not both.</span>
-            </div>
-            }
-            @if (ViewData.ModelState[""].Errors.Count > 0)
-            {
-            <div class="text-danger">
-                <span>Please provide either an image URL or upload an image.</span>
-            </div>
-            }
+           
             <div>
                 <label for="imageText">Enter text:</label>
                 <input type="text" id="imageText" name="Text" value="@Model.Posts.FirstOrDefault()?.Text" />

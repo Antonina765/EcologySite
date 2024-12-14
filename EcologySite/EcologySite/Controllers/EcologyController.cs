@@ -90,24 +90,30 @@ public class EcologyController : Controller
             viewModel.AvatarUrl = _userRepositryReal.GetAvatarUrl(userId!.Value);
 
             var info = _commentRepositoryReal.GetCommentAuthors((int)userId);
-        
-            viewModel.Comments = info
-                .Comments
-                .Select(dbComment => new CommentForProfileViewModel()
-                {
-                    CommentId = dbComment.Id,
-                    CommentText = dbComment.CommentText
-                })
-                .ToList();
-        
-            viewModel.Posts = info
-                .Posts
-                .Select(dbPost => new EcologyForProfileViewModel
-                {
-                    ImageSrc = dbPost.ImageSrc,
-                    Texts = dbPost.Text,
-                })
-                .ToList();
+
+            if (info != null)
+            {
+                viewModel.Comments = info 
+                    .Comments 
+                    .Select(dbComment => new CommentForProfileViewModel()
+                    {
+                        CommentId = dbComment.Id, 
+                        CommentText = dbComment.CommentText
+                    }) .ToList(); 
+                
+                viewModel.Posts = info 
+                    .Posts 
+                    .Select(dbPost => new EcologyForProfileViewModel
+                    {
+                        ImageSrc = dbPost.ImageSrc, 
+                        Texts = dbPost.Text,
+                    }) .ToList();
+            }
+            else
+            {
+                viewModel.Comments = new List<CommentForProfileViewModel>(); 
+                viewModel.Posts = new List<EcologyForProfileViewModel>();
+            }
         }
         else 
         {
@@ -226,6 +232,7 @@ public class EcologyController : Controller
         //_ecologyRepository.Add(ecology);
 
         // Отправка уведомления о новом посте
+        var userName = _authService.GetName();
         _chatHub.Clients.All.NewMessageAdded($"User {viewModel.UserName} create a new post: {viewModel.Text}");
         
         return RedirectToAction("EcologyChat");
