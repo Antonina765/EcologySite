@@ -1,0 +1,85 @@
+.chat-container {
+    width: 300px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: fixed; /* Фиксированное положение для выравнивания слева */
+    bottom: 20px;
+    left: -320px; /* Начальная позиция за границами экрана */
+    z-index: 1000; /* Обеспечивает видимость поверх других элементов */
+    transition: left 0.3s ease;
+}
+
+.chat-container.show {
+    left: 20px; /* Позиция на экране при показе */
+}
+
+.chat-container.hidden {
+    left: -320px; /* Позиция за границами экрана при скрытии */
+}
+
+.messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+}
+
+.message.template {
+    display: none;
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f4f4f9;
+    border-top: 1px solid #ccc;
+}
+
+.new-message {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.send-new-message {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-new-message:hover {
+    background-color: #0056b3;
+}
+
+.toggle-chat {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toggle-chat:hover {
+    background-color: #0056b3;
+}
