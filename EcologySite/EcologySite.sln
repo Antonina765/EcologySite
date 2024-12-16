@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecology.Data.Fake", "Ecolog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enums", "Enums\Enums.csproj", "{F12AE328-F6AE-4A92-BA53-F786F4E00D1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatMinimalApi", "ChatMinimalApi\ChatMinimalApi.csproj", "{FC5576BA-1E42-4777-9FE8-7CA3D6F18994}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{F12AE328-F6AE-4A92-BA53-F786F4E00D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12AE328-F6AE-4A92-BA53-F786F4E00D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12AE328-F6AE-4A92-BA53-F786F4E00D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC5576BA-1E42-4777-9FE8-7CA3D6F18994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5576BA-1E42-4777-9FE8-7CA3D6F18994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC5576BA-1E42-4777-9FE8-7CA3D6F18994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5576BA-1E42-4777-9FE8-7CA3D6F18994}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

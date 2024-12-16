@@ -21,9 +21,11 @@ public class HomeController : Controller
         var viewModel = new IndexViewModel();
 
         var userName = _authService.GetName();
-
+        var userId = _authService.GetUserId();
+        
         viewModel.UserName = userName;
-
+        viewModel.UserId = userId ?? -1;
+        
         return View(viewModel);
     }
 

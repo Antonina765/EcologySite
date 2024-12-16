@@ -1,7 +1,12 @@
 $(document).ready(function () {
+  const baseUrl = `https://localhost:7292`;
+
+  const authorId = $(".user-id").val() - 0;
+  const authorName = $(".user-name").val();
+
   const hub = new signalR.HubConnectionBuilder()
-    .withUrl("/hub/chatMainPage")
-    .build();
+      .withUrl(baseUrl + "/hub/chat")
+      .build();
 
   init();
 
@@ -18,15 +23,16 @@ $(document).ready(function () {
 
   function sendMessage() {
     const message = $(".new-message").val();
-    hub.invoke("addNewMessage", message);
+    hub.invoke("addNewMessage", authorId, authorName, message);
     $(".new-message").val("");
   }
 
   hub.start().then(function () {
     // When connection with server is alive
-    hub.invoke("userEnteredToChat");
+    hub.invoke("userEnteredToChat", authorId, authorName);
   });
 
+  //TODO refactor the method. Get data from new minimal api server
   function init() {
     const url = "/api/ApiChat/GetLastMessages";
     $.get(url).then(function (messages) {
