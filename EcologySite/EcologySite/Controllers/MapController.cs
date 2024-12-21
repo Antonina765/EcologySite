@@ -25,7 +25,7 @@ public class LocationController : Controller
     public async Task<IActionResult> GetLocations()
     {
         var client = _httpClientFactory.CreateClient();
-        var response = await client.GetAsync("http://localhost:5000/location"); // URL минимального API
+        var response = await client.GetAsync("http://localhost:5173/location"); // URL минимального API
 
         if (response.IsSuccessStatusCode)
         {
@@ -47,7 +47,7 @@ public class LocationController : Controller
         viewModel.UserName = userName;
 
         var client = _httpClientFactory.CreateClient();
-        var response = await client.PostAsJsonAsync("http://localhost:5000/location", viewModel); // URL минимального API
+        var response = await client.PostAsJsonAsync("http://localhost:5173/location", viewModel); // URL минимального API
 
         if (response.IsSuccessStatusCode)
         {
