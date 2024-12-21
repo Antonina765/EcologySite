@@ -42,3 +42,7 @@ body {
 .chat-container{
   width: 300px;
 }
+
+.chat-container .joke {
+  display: none;
+}
