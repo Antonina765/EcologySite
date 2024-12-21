@@ -78,6 +78,11 @@ public class AuthController : Controller
     [HttpPost]
     public IActionResult Register(RegisterUserViewModel viewModel)
     {
+        if (!_userRepositryReal.CheckIsNameAvailable(viewModel.UserName))
+        {
+            return View(viewModel);
+        }
+        
         _userRepositryReal.Register(
             viewModel.UserName,
             viewModel.Password);

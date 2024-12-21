@@ -40,18 +40,18 @@
                     </li>
                     @if (!User.Identity?.IsAuthenticated ?? false)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">@Home.Home_Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">@Home.Home_Registration</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark login-link" asp-area="" asp-controller="Auth" asp-action="Login">@Home.Home_Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark registration-link" asp-area="" asp-controller="Auth" asp-action="Register">@Home.Home_Registration</a>
+                    </li>
                     }
                     else
                     {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">@Home.Home_Logout</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark logout-link" asp-area="" asp-controller="Auth" asp-action="Logout">@Home.Home_Logout</a>
+                    </li>
                     }
                     @if (authService.IsAdmin())
                     {
