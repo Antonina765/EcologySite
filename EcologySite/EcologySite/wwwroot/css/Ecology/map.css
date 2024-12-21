@@ -1,0 +1,12 @@
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.map-container {
+    padding: 20px;
+}

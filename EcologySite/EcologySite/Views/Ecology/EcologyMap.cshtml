@@ -1,0 +1,17 @@
+@using EcologySite.Models.Ecology
+@{
+    Layout = "~/Views/Shared/_LayoutEcology.cshtml";
+}
+
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <link href="~/css/Ecology/map.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/Ecology/map.js"></script>
+}
+
+<div class="map-container">
+    <h1>Map</h1>
+    <div id="map"></div>
+</div>

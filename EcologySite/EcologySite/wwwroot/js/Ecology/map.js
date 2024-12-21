@@ -1,33 +1,36 @@
-var map = L.map('map').setView([51.505, -0.09], 13);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8
+    });
 
-fetch('/api/locations')
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(location => {
-            L.marker([location.latitude, location.longitude]).addTo(map)
-                .bindPopup(`Latitude: ${location.latitude}, Longitude: ${location.longitude}`);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
+
+            map.setCenter(pos);
+
+            // Отправка данных местоположения на сервер
+            $.ajax({
+                type: "POST",
+                url: "/location",
+                contentType: "application/json",
+                data: JSON.stringify({ Latitude: pos.lat, Longitude: pos.lng }),
+                success: function () {
+                    console.log("Location saved successfully.");
+                },
+                error: function () {
+                    console.error("Error saving location.");
+                }
+            });
         });
-    });
-
-// add a function to save a new location
-function saveLocation(lat, lng) {
-    fetch('/api/locations', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ latitude: lat, longitude: lng, timestamp: new Date() })
-    });
+    }
 }
-
-// adding a new location on map click
-map.on('click', function(e) {
-    var lat = e.latlng.lat;
-    var lng = e.latlng.lng;
-    L.marker([lat, lng]).addTo(map);
-    saveLocation(lat, lng);
-});
-
