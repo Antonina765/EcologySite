@@ -1,0 +1,32 @@
+@using EcologySite.Services
+@inject UserService userService
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecology Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+<header class="head-page">
+    <div class="logotip">
+        <img src="~/images/Ecology/logotip.JPG" alt="logotip" />
+    </div>
+    <div class="name">Map</div>
+    <div class="block-of-profile">
+        <img src="@userService.GetAvatar()" alt="" class="defaltavatar" />
+        <li><a class="log-sing" href="/Ecology/EcologyProfile"></a></li>
+    </div>
+    <div class="return-home">
+        <ul>
+            <li><a class="return-home" href="/"></a></li>
+        </ul>
+    </div>
+</header>
+<div id="map" style="height: 600px;"></div>
+
+<script src="map.js"></script>
+</body>
+</html>
