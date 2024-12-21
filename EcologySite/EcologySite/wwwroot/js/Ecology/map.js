@@ -4,6 +4,31 @@ function initMap() {
         zoom: 8
     });
 
+    function addMarker(location) {
+        var pos = {
+            lat: location.latitude,
+            lng: location.longitude
+        };
+        var marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: location.userName
+        });
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "/Location/getLocations",
+        success: function (data) {
+            data.forEach(function (location) {
+                addMarker(location);
+            });
+        },
+        error: function (error) {
+            console.error("Error fetching locations:", error);
+        }
+    });
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
@@ -17,13 +42,12 @@ function initMap() {
             });
 
             map.setCenter(pos);
-
-            // Отправка данных местоположения на сервер
+            
             $.ajax({
                 type: "POST",
-                url: "/location",
+                url: "/Location/addLocation",
                 contentType: "application/json",
-                data: JSON.stringify({ Latitude: pos.lat, Longitude: pos.lng, UserId: userId, UserName: userName }),
+                data: JSON.stringify({ Latitude: pos.lat, Longitude: pos.lng }),
                 success: function () {
                     console.log("Location saved successfully.");
                 },
@@ -33,14 +57,4 @@ function initMap() {
             });
         });
     }
-}
-
-function getUserId() {
-    // Здесь должно быть получение ID пользователя из вашего контекста или другой логики
-    return "12345";  // Пример значения
-}
-
-function getUserName() {
-    // Здесь должно быть получение имени пользователя из вашего контекста или другой логики
-    return "JohnDoe";  // Пример значения
 }

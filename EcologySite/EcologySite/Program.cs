@@ -40,7 +40,7 @@ builder.Services.AddScoped<EnumHelper>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddHttpContextAccessor();
-
+builder.Services.AddHttpClient(); // Регистрация HttpClientFactory
 
 var app = builder.Build();
 

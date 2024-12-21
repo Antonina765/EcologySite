@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcologySite.E2E")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20ffc939b9d5ce33503a5767f0ab3ddfc6c09e63")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95e8d9e5e6c34dcfc949389926dfe5c454c7a214")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcologySite.E2E")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcologySite.E2E")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
