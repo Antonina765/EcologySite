@@ -20,24 +20,9 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "MapMinimalApi v1");
-    c.RoutePrefix = string.Empty;  // Делает Swagger UI доступным по корню приложения
+    c.RoutePrefix = string.Empty;  
 });
 
-// сохранение местоположения
-app.MapPost("/location", async (Location location, LocationContext db) =>
-    {
-        db.Locations.Add(location);
-        await db.SaveChangesAsync();
-        return Results.Ok(location);
-    })
-    .WithName("AddLocation")
-    .WithTags("Location");
+app.MapControllers(); 
 
 app.Run();
-
-public class Location
-{
-    public int Id { get; set; }
-    public double Latitude { get; set; }
-    public double Longitude { get; set; }
-}

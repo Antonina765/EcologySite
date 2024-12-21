@@ -23,7 +23,7 @@ function initMap() {
                 type: "POST",
                 url: "/location",
                 contentType: "application/json",
-                data: JSON.stringify({ Latitude: pos.lat, Longitude: pos.lng }),
+                data: JSON.stringify({ Latitude: pos.lat, Longitude: pos.lng, UserId: userId, UserName: userName }),
                 success: function () {
                     console.log("Location saved successfully.");
                 },
@@ -33,4 +33,14 @@ function initMap() {
             });
         });
     }
+}
+
+function getUserId() {
+    // Здесь должно быть получение ID пользователя из вашего контекста или другой логики
+    return "12345";  // Пример значения
+}
+
+function getUserName() {
+    // Здесь должно быть получение имени пользователя из вашего контекста или другой логики
+    return "JohnDoe";  // Пример значения
 }
