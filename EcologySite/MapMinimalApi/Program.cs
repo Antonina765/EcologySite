@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 builder.Services.AddDbContext<LocationContext>(options =>
     options.UseNpgsql(LocationContext.CONNECTION_STRING));
 
@@ -20,9 +22,13 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "MapMinimalApi v1");
-    c.RoutePrefix = string.Empty;  
+    c.RoutePrefix = string.Empty;
 });
 
-app.MapControllers(); 
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();
