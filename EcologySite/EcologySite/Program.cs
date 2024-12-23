@@ -23,6 +23,8 @@ builder.Services
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddDbContext<WebDbContext>(options => options.UseNpgsql(WebDbContext.CONNECTION_STRING));
 
 
@@ -72,5 +74,7 @@ app.MapHub<ChatHub>("/hub/chatMainPage");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Ecology}/{action=Index}/{id?}");
+
+app.MapControllers();
 
 app.Run();

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MapMinimalApi.Data;
 using MapMinimalApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MapMinimalApi.Controllers;
 
@@ -8,7 +9,7 @@ namespace MapMinimalApi.Controllers;
 [Route("[controller]")]
 public class LocationController : Controller
 {
-    private readonly LocationContext _dbContext;
+    private LocationContext _dbContext;
 
     public LocationController(LocationContext dbContext)
     {
@@ -16,27 +17,17 @@ public class LocationController : Controller
     }
 
     [HttpGet]
-    public List<Location> GetLocations()
+    public async Task<List<Location>> GetLocations()
     {
-        return _dbContext.Locations.ToList();
+        return await _dbContext.Locations.ToListAsync();
     }
     
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public ActionResult<int> AddLocation([FromBody] Location location)
+    public async Task<ActionResult<Location>> PostLocation(Location location)
     {
-        if (_dbContext
-            .Locations
-            .OrderByDescending(x => x.Id)
-            .Any(x => x.Latitude == location.Latitude && x.Longitude == location.Longitude && x.UserId == location.UserId))
-        {
-            return Conflict("Duplicate location entry.");
-        }
-
         _dbContext.Locations.Add(location);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetLocations), new { id = location.Id }, location.Id);
+        return CreatedAtAction(nameof(GetLocations), new { id = location.Id }, location);
     }
 }

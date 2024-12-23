@@ -127,6 +127,20 @@ public class EcologyController : Controller
     }
     
     [HttpGet]
+    public IActionResult EcologyMap()
+    {
+        var viewModel = new LocationViewModel();
+
+        var userName = _authService.GetName();
+        var userId = _authService.GetUserId();
+            
+        viewModel.UserName = userName;
+        viewModel.UserId = userId ?? -1;
+            
+        return View(viewModel);
+    }
+    
+    [HttpGet]
     public IActionResult EcologyChat()
     {
         var ecologyFromDb = _ecologyRepository.GetAllWithUsersAndComments();

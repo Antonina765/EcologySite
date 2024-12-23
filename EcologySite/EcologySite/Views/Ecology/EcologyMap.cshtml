@@ -1,17 +1,19 @@
+@using EcologySite.Localizations
 @using EcologySite.Models.Ecology
-@{
-    Layout = "~/Views/Shared/_LayoutEcology.cshtml";
-}
+@model LocationViewModel
 
 @section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-    <link href="~/css/Ecology/map.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/Ecology/map.js"></script>
+    <link rel="stylesheet" href="~/css/Ecology/map.css" />
 }
 
-<div class="map-container">
-    <h1>Map</h1>
-    <div id="map"></div>
+<div class="map-page">
+    <div class="map-container">
+        <input type="hidden" class="user-id" value="@Model.UserId" />
+        <input type="hidden" class="user-name" value="@Model.UserName" />
+        <div id="map"></div>
+    </div>
+    <div class="text-center">
+        <div>Welcome @(string.IsNullOrEmpty(Model.UserName) ? "Guest" : Model.UserName)</div>
+    </div>
 </div>

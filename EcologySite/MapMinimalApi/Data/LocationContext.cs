@@ -11,4 +11,12 @@ public class LocationContext : DbContext
     }
     
     public DbSet<Location> Locations { get; set; }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseNpgsql(CONNECTION_STRING);
+        }
+    }
 }
