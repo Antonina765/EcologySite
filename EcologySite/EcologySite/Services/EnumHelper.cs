@@ -2,6 +2,7 @@
 
 namespace EcologySite.Services
 {
+    [AutoRegisterFlag]
     public class EnumHelper
     {
         public List<string> GetNames<T>(T userRole)

@@ -1,8 +1,10 @@
-using Enums.Users;
 using System.Data;
 using EcologySite.Localizations;
+using Enums.Users;
 
 namespace EcologySite.Services;
+
+[AutoRegisterFlag]
 public class AuthService
 {
     private IHttpContextAccessor _httpContextAccessor;
