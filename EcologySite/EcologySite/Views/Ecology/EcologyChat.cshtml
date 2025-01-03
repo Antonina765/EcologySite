@@ -30,7 +30,6 @@
                 <input type="file" asp-for="Posts.FirstOrDefault().ImageFile" />
                 @Html.ValidationMessageFor(model => model.Posts.FirstOrDefault().ImageFile, "", new { @class = "text-danger" })
             </div>
-           
             <div>
                 <label for="imageText">Enter text:</label>
                 <input type="text" id="imageText" name="Text" value="@Model.Posts.FirstOrDefault()?.Text" />
@@ -46,51 +45,51 @@
 <ul>
     @foreach (var ecology in Model.Ecologies)
     {
-    <li>
-        <div class="post-header">
-            <img src="@ecology.UserAvatar" alt="User Icon" class="user-icon"/> 
-            <span>@ecology.UserName</span>
-            <!-- Иконка лайка и количество лайков --> 
-            <div class="like-container">
-                <i class="icon @(ecology.IsLiked ? "like-pushed" : "like")" data-post-id="@ecology.PostId">
-                </i> <span class="like-count">@ecology.LikeCount</span>
+        <li class="post @(ecology.ForMainPage == 1 ? "main-page-post" : "regular-post")">
+            <div class="post-header">
+                <img src="@ecology.UserAvatar" alt="User Icon" class="user-icon"/> 
+                <span>@ecology.UserName</span>
+                <!-- Иконка лайка и количество лайков --> 
+                <div class="like-container">
+                    <i class="icon @(ecology.IsLiked ? "like-pushed" : "like")" data-post-id="@ecology.PostId">
+                    </i> <span class="like-count">@ecology.LikeCount</span>
+                </div>
+                <button class="edit-btn">•••</button>
             </div>
-            <button class="edit-btn">•••</button>
-        </div>
-        <img src="@ecology.ImageSrc" class="post" alt="Picture"/>
-        <p>@ecology.Texts.FirstOrDefault()</p>
+            <img src="@ecology.ImageSrc" class="post" alt="Picture"/>
+            <p>@ecology.Texts.FirstOrDefault()</p>
 
-        @if (User.Identity?.Name == @ecology.UserName)
-        {
-        <div class="post-actions">
-            <span class="dots">•••</span>
-            <div class="actions-menu">
-                <a href="@Url.Action("UpdatePost", new { id = ecology.PostId, url = ecology.ImageSrc, text = ecology.Texts.FirstOrDefault() })">Edit</a>
-                @if (ecology.CanDelete)
-                {
-                    <a class="tag" href="/Ecology/Remove?id=@ecology.PostId">Delete</a>
-                }
-            </div>
-        </div>
-        }
-
-        <div class="comments">
-            <h4>Comments</h4>
-            @foreach (var comment in ecology.Comments)
+            @if (User.Identity?.Name == @ecology.UserName)
             {
-            <div class="comment">
-                <img src="@comment.UserAvatar" alt="User Icon" class="user-icon" />
-                <span>@comment.UserName</span>
-                <p>@comment.CommentText</p>
-            </div>
+                <div class="post-actions">
+                    <span class="dots">•••</span>
+                    <div class="actions-menu">
+                        <a href="@Url.Action("UpdatePost", new { id = ecology.PostId, url = ecology.ImageSrc, text = ecology.Texts.FirstOrDefault() })">Edit</a>
+                        @if (ecology.CanDelete)
+                        {
+                            <a class="tag" href="/Ecology/Remove?id=@ecology.PostId">Delete</a>
+                        }
+                    </div>
+                </div>
             }
-            <form method="post" action="/Ecology/AddComment">
-                <input type="hidden" name="postId" value="@ecology.PostId" />
-                <textarea name="commentText" placeholder="Enter your comment"></textarea>
-                <button type="submit">Add Comment</button>
-            </form>
-        </div>
-    </li>
+
+            <div class="comments">
+                <h4>Comments</h4>
+                @foreach (var comment in ecology.Comments)
+                {
+                    <div class="comment">
+                        <img src="@comment.UserAvatar" alt="User Icon" class="user-icon" />
+                        <span>@comment.UserName</span>
+                        <p>@comment.CommentText</p>
+                    </div>
+                }
+                <form method="post" action="/Ecology/AddComment">
+                    <input type="hidden" name="postId" value="@ecology.PostId" />
+                    <textarea name="commentText" placeholder="Enter your comment"></textarea>
+                    <button type="submit">Add Comment</button>
+                </form>
+            </div>
+        </li>
     }
 </ul>
 }

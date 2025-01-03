@@ -83,3 +83,10 @@
 .toggle-chat:hover {
     background-color: #0056b3;
 }
+
+.main-page-post {
+    border: 2px solid red;
+}
+.regular-post {
+    border: 2px solid green;
+}

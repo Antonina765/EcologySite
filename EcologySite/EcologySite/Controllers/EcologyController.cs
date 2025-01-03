@@ -76,8 +76,17 @@ public class EcologyController : Controller
     public IActionResult SetForMainPage(Type postId)
     {
         _ecologyRepository.SetForMainPage(postId);
-        return RedirectToAction("Index");
+        return RedirectToAction("EcologyChat");
     }
+    
+    /* Метод для установки поста на главную страницу, доступный только для администраторов
+    [HttpPost] 
+    public IActionResult SetForMainPage(int postId) 
+    { 
+        var userRole = User.IsInRole("admin") ? "admin" : "user"; 
+        _ecologyRepository.SetForMainPage(postId, userRole); 
+        return RedirectToAction("Index"); 
+    }*/
     
     [HttpGet]
     public IActionResult EcologyProfile()
@@ -252,34 +261,6 @@ public class EcologyController : Controller
         return RedirectToAction("EcologyChat");
     }
     
-    /*[HttpPost]
-    public IActionResult AddComment(int postId, string commentTect, string userId)
-    {
-       //var userId
-        if (ModelState.IsValid && userId != null)
-        {
-            var comment = new CommentViewModel()
-            {
-                PostId = postId,
-                CommentText = commentText,
-                UserId = userId.Value
-            };
-            _commentRepositoryReal.Add(comment);
-            return RedirectToAction("EcologyChat");
-        }
-        return BadRequest("Invalid comment data.");
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> CommentsForPost(int postId)
-    {
-        var comments = await _commentRepositoryReal.Comments
-            .Where(c => c.PostId == postId)
-            .Include(c => c.User)
-            .ToListAsync();
-        return View(comments as string);
-    }*/
-
     [HttpPost]
     public IActionResult AddComment(int postId, string commentText)
     {

@@ -2,6 +2,8 @@ using Ecology.Data.Interface.Repositories;
 using Ecology.Data.Models;
 using Ecology.Data.Models.Ecology;
 using Ecology.Data.DataLayerModels;
+using Ecology.Data.Models.SqlRawModels;
+using Enums.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecology.Data.Repositories;
@@ -12,7 +14,7 @@ public interface IEcologyRepositoryReal : IEcologyRepository<EcologyData>
     IEnumerable<EcologyData>GetAllWithUsersAndComments();
     
     void SetForMainPage(Type postId);
-    
+    IEnumerable<PostWithMainStatus> GetPostsForMainPage();
     bool LikeEcology(int ecologyId, int userId);
 }
 
@@ -35,7 +37,7 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
     public void SetForMainPage(Type postId)
     {
         var ecology = _dbSet.Find(postId);
-        if (ecology != null)
+        if (ecology != null ) //(ecology != null && Role == "Admin")
         {
             ecology.ForMainPage = 1; 
             _webDbContext.SaveChanges();
@@ -91,5 +93,24 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
             });
         _webDbContext.SaveChanges();
         return true;
+    }
+    
+    // Метод для получения постов с информацией о статусе
+    public IEnumerable<PostWithMainStatus> GetPostsForMainPage() 
+    {
+        var sql = @" 
+            SELECT 
+                P.Id, 
+                P.Text, 
+                P.ImageSrc, 
+                P.ForMainPage, 
+                CASE WHEN P.ForMainPage = 1 THEN 'ForMainPage' ELSE 'NotForMainPage' END as MainPageStatus 
+            FROM Posts P";
+        // Выполнение запроса и получение данных
+        var result = _webDbContext
+            .Database
+            .SqlQueryRaw<PostWithMainStatus>(sql)
+            .ToList(); 
+        return result; 
     }
 }

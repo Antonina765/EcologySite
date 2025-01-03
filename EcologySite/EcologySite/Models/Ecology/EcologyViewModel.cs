@@ -2,6 +2,7 @@ namespace EcologySite.Models.Ecology;
 
 public class EcologyViewModel
 {
+    public int ForMainPage { get; set; }
     public int PostId { get; set; }
     public string ImageSrc { get; set; }
     public string Texts { get; set; }
