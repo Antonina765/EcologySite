@@ -152,6 +152,7 @@ public class EcologyController : Controller
     [HttpGet]
     public IActionResult EcologyChat()
     {
+        var posts = _ecologyRepository.GetPostsForMainPage().ToArray();
         var ecologyFromDb = _ecologyRepository.GetAllWithUsersAndComments();
         var currentUserId = _authService.GetUserId();
         var isAdmin = User.Claims.Any(c => c.Type == ClaimTypes.Role && c.Value == "Admin"); 
@@ -194,6 +195,11 @@ public class EcologyController : Controller
                 }
             )
             .ToList();
+
+        for (int i = 0; i < ecologyViewModels.Count; i++)
+        {
+            ecologyViewModels[i].ForMainPage = posts[i].ForMainPage;
+        }
 
         var viewModel = new PostViewModel
         {

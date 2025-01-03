@@ -6,5 +6,4 @@ public class PostWithMainStatus
     public string ImageSrc { get; set; }
     public string Text { get; set; } 
     public int ForMainPage { get; set; } 
-    public string MainPageStatus { get; set; }
 }

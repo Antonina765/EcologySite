@@ -100,12 +100,12 @@ public class EcologyRepository : BaseRepository<EcologyData>, IEcologyRepository
     {
         var sql = @" 
             SELECT 
-                P.Id, 
-                P.Text, 
-                P.ImageSrc, 
-                P.ForMainPage, 
-                CASE WHEN P.ForMainPage = 1 THEN 'ForMainPage' ELSE 'NotForMainPage' END as MainPageStatus 
-            FROM Posts P";
+                P.""Id"", 
+                P.""Text"", 
+                P.""ImageSrc"", 
+                P.""ForMainPage"", 
+                CASE WHEN P.""ForMainPage"" = 1 THEN 'ForMainPage' ELSE 'NotForMainPage' END as ""MainPageStatus"" 
+            FROM ""Ecology"" P";
         // Выполнение запроса и получение данных
         var result = _webDbContext
             .Database
